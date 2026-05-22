@@ -1,0 +1,124 @@
+const express = require("express");
+const Doctor = require("../models/Doctor");
+
+const router = express.Router();
+
+// Get All Doctors
+router.get("/", async (req, res) => {
+  try {
+    const doctors = await Doctor.find();
+
+    res.json(doctors);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error Fetching Doctors",
+    });
+  }
+});
+
+// Add Doctor
+router.post("/add", async (req, res) => {
+  try {
+    const doctor = new Doctor(req.body);
+
+    await doctor.save();
+
+    res.json({
+      message: "Doctor Added Successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error Adding Doctor",
+    });
+  }
+});
+
+// Add Review
+router.post("/:id/review", async (req, res) => {
+  try {
+    const doctor = await Doctor.findById(
+      req.params.id
+    );
+
+    if (!doctor) {
+      return res.status(404).json({
+        message: "Doctor Not Found",
+      });
+    }
+
+    doctor.reviews.push({
+      patientName:
+        req.body.patientName,
+      rating: req.body.rating,
+      comment: req.body.comment,
+    });
+
+    doctor.reviewCount =
+      doctor.reviews.length;
+
+    const totalRating =
+      doctor.reviews.reduce(
+        (sum, review) =>
+          sum + review.rating,
+        0
+      );
+
+    doctor.rating =
+      totalRating /
+      doctor.reviewCount;
+
+    await doctor.save();
+
+    res.json({
+      message:
+        "Review Added Successfully",
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Error Adding Review",
+    });
+  }
+});
+
+// Delete Doctor
+router.delete("/:id", async (req, res) => {
+  try {
+    await Doctor.findByIdAndDelete(
+      req.params.id
+    );
+
+    res.json({
+      message:
+        "Doctor Deleted Successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Error Deleting Doctor",
+    });
+  }
+});
+
+// Update Doctor
+router.put("/:id", async (req, res) => {
+  try {
+    await Doctor.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+
+    res.json({
+      message:
+        "Doctor Updated Successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "Error Updating Doctor",
+    });
+  }
+});
+
+module.exports = router;

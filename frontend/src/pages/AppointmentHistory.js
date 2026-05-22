@@ -1,0 +1,115 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function AppointmentHistory() {
+  const [appointments, setAppointments] =
+    useState([]);
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
+
+  const fetchAppointments = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/appointments"
+      );
+
+      setAppointments(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cancelAppointment = async (id) => {
+    const confirmCancel = window.confirm(
+      "Are you sure you want to cancel this appointment?"
+    );
+
+    if (!confirmCancel) return;
+
+    try {
+      await axios.delete(
+        `http://localhost:5000/api/appointments/${id}`
+      );
+
+      alert(
+        "Appointment Cancelled Successfully"
+      );
+
+      fetchAppointments();
+
+    } catch (error) {
+      console.log(error);
+      alert("Failed to Cancel Appointment");
+    }
+  };
+
+  return (
+    <div
+      style={{
+        padding: "30px",
+        background: "#f5f7fb",
+        minHeight: "100vh",
+      }}
+    >
+      <h1>📋 Appointment History</h1>
+
+      {appointments.length === 0 ? (
+        <p>No Appointments Found</p>
+      ) : (
+        appointments.map((appointment) => (
+          <div
+            key={appointment._id}
+            style={{
+              background: "#fff",
+              padding: "15px",
+              marginBottom: "15px",
+              borderRadius: "10px",
+              boxShadow:
+                "0 2px 8px rgba(0,0,0,0.1)",
+            }}
+          >
+            <h3>{appointment.patientName}</h3>
+
+            <p>
+              <strong>Doctor:</strong>{" "}
+              {appointment.doctorName}
+            </p>
+
+            <p>
+              <strong>Date:</strong>{" "}
+              {appointment.date}
+            </p>
+
+            <p>
+              <strong>Time:</strong>{" "}
+              {appointment.time}
+            </p>
+
+            <button
+              onClick={() =>
+                cancelAppointment(
+                  appointment._id
+                )
+              }
+              style={{
+                background: "#dc2626",
+                color: "white",
+                border: "none",
+                padding: "10px 15px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                marginTop: "10px",
+              }}
+            >
+              Cancel Appointment
+            </button>
+          </div>
+        ))
+      )}
+    </div>
+  );
+}
+
+export default AppointmentHistory;
