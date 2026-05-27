@@ -6,6 +6,9 @@ function Doctors() {
   const [doctors, setDoctors] = useState([]);
   const [search, setSearch] = useState("");
 
+  const isStaff =
+    localStorage.getItem("staff") === "true";
+
   useEffect(() => {
     fetchDoctors();
   }, []);
@@ -238,48 +241,52 @@ function Doctors() {
                   </button>
                 </Link>
 
-                <Link
-                  to={`/edit-doctor/${doctor._id}`}
-                >
-                  <button
-                    style={{
-                      background:
-                        "#f59e0b",
-                      color: "white",
-                      border: "none",
-                      padding:
-                        "10px 15px",
-                      borderRadius:
-                        "8px",
-                      cursor:
-                        "pointer",
-                    }}
-                  >
-                    ✏️ Edit Doctor
-                  </button>
-                </Link>
+                {isStaff && (
+                  <>
+                    <Link
+                      to={`/edit-doctor/${doctor._id}`}
+                    >
+                      <button
+                        style={{
+                          background:
+                            "#f59e0b",
+                          color: "white",
+                          border: "none",
+                          padding:
+                            "10px 15px",
+                          borderRadius:
+                            "8px",
+                          cursor:
+                            "pointer",
+                        }}
+                      >
+                        ✏️ Edit Doctor
+                      </button>
+                    </Link>
 
-                <button
-                  onClick={() =>
-                    deleteDoctor(
-                      doctor._id
-                    )
-                  }
-                  style={{
-                    background:
-                      "#dc2626",
-                    color: "white",
-                    border: "none",
-                    padding:
-                      "10px 15px",
-                    borderRadius:
-                      "8px",
-                    cursor:
-                      "pointer",
-                  }}
-                >
-                  🗑 Delete Doctor
-                </button>
+                    <button
+                      onClick={() =>
+                        deleteDoctor(
+                          doctor._id
+                        )
+                      }
+                      style={{
+                        background:
+                          "#dc2626",
+                        color: "white",
+                        border: "none",
+                        padding:
+                          "10px 15px",
+                        borderRadius:
+                          "8px",
+                        cursor:
+                          "pointer",
+                      }}
+                    >
+                      🗑 Delete Doctor
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           ))}

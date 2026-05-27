@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+} from "react-router-dom";
+
 import DashboardCards from "../components/DashboardCards";
+import RecentAppointments from "../components/RecentAppointments";
+
 import {
   FaUserMd,
   FaCalendarAlt,
   FaUsers,
 } from "react-icons/fa";
-import RecentAppointments from "../components/RecentAppointments";
 
 function Admin() {
   const [doctorCount, setDoctorCount] =
@@ -58,14 +63,49 @@ function Admin() {
     }
   };
 
+  if (
+    localStorage.getItem("staff") !==
+    "true"
+  ) {
+    return <Navigate to="/home" />;
+  }
+
   return (
     <div
       style={{
         padding: "30px",
         background: "#f5f7fb",
         minHeight: "100vh",
+        position: "relative",
       }}
     >
+      <button
+        onClick={() => {
+          localStorage.removeItem(
+            "token"
+          );
+          localStorage.removeItem(
+            "staff"
+          );
+          window.location.href = "/";
+        }}
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          background: "#374151",
+          color: "white",
+          border: "none",
+          padding: "12px 20px",
+          borderRadius: "10px",
+          fontSize: "15px",
+          fontWeight: "600",
+          cursor: "pointer",
+        }}
+      >
+        🚪 Logout
+      </button>
+
       <h1
         style={{
           marginBottom: "20px",
@@ -122,18 +162,16 @@ function Admin() {
               fontSize: "15px",
               fontWeight: "600",
               cursor: "pointer",
-              boxShadow:
-                "0 4px 12px rgba(37,99,235,0.3)",
             }}
           >
             ➕ Add Doctor
           </button>
         </Link>
 
-        <Link to="/history">
+        <Link to="/doctors">
           <button
             style={{
-              background: "#16a34a",
+              background: "#f59e0b",
               color: "white",
               border: "none",
               padding: "12px 20px",
@@ -141,19 +179,16 @@ function Admin() {
               fontSize: "15px",
               fontWeight: "600",
               cursor: "pointer",
-              boxShadow:
-                "0 4px 12px rgba(22,163,74,0.3)",
             }}
           >
-            📋 View Appointments
+            ✏️ Edit Doctors
           </button>
         </Link>
 
-        <Link to="/users">
+        <Link to="/doctors">
           <button
             style={{
-              background:
-                "linear-gradient(135deg, #7c3aed, #a855f7)",
+              background: "#dc2626",
               color: "white",
               border: "none",
               padding: "12px 20px",
@@ -161,11 +196,9 @@ function Admin() {
               fontSize: "15px",
               fontWeight: "600",
               cursor: "pointer",
-              boxShadow:
-                "0 4px 12px rgba(124,58,237,0.3)",
             }}
           >
-            👥 View Users
+            🗑️ Delete Doctors
           </button>
         </Link>
       </div>

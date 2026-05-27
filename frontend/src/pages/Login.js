@@ -1,37 +1,89 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login() {
-  const navigate = useNavigate();
+ 
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] =
+    useState("");
 
-  const handleLogin = async () => {
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email,
-          password,
-        }
+  const [password, setPassword] =
+    useState("");
+const handleLogin = async () => {
+  try {
+    console.log("Email:", email);
+    console.log("Password:", password);
+
+    // Staff Login
+    if (
+      email.trim().toLowerCase() ===
+        "admin@gmail.com" &&
+      password.trim() === "admin123"
+    ) {
+      console.log(
+        "STAFF LOGIN SUCCESS"
+      );
+
+      localStorage.setItem(
+        "staff",
+        "true"
       );
 
       localStorage.setItem(
         "token",
-        res.data.token
+        "staff-token"
       );
 
-      alert("Login Successful");
+      alert(
+        "Staff Login Successful"
+      );
 
-      navigate("/home");
+      window.location.href =
+        "/admin";
 
-    } catch (error) {
-      alert("Login Failed");
-      console.log(error);
+      return;
     }
-  };
+
+    // Normal User Login
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/login",
+      {
+        email: email.trim(),
+        password: password.trim(),
+      }
+    );
+
+    localStorage.removeItem(
+      "staff"
+    );
+
+    localStorage.setItem(
+      "token",
+      res.data.token
+    );
+
+    alert(
+      "Login Successful"
+    );
+
+    window.location.href =
+      "/home";
+
+  } catch (error) {
+    console.error(error);
+
+    if (
+      error.response?.data?.message
+    ) {
+      alert(
+        error.response.data.message
+      );
+    } else {
+      alert("Login Failed");
+    }
+  }
+};
 
   return (
     <div
@@ -57,7 +109,7 @@ function Login() {
             margin: 0,
           }}
         >
-          🏥 Smart Hospital
+          🏥 SmartCare AI
         </h1>
 
         <p
@@ -67,7 +119,8 @@ function Login() {
             marginTop: "10px",
           }}
         >
-          Fast, Secure & Easy Healthcare Management
+          Intelligent Hospital Appointment &
+          Healthcare Management System
         </p>
       </div>
 

@@ -15,6 +15,9 @@ function Appointments() {
   const [patientName, setPatientName] =
     useState("");
 
+  const [email, setEmail] =
+    useState("");
+
   const [gender, setGender] =
     useState("");
 
@@ -56,39 +59,45 @@ function Appointments() {
     );
 
     doc.text(
-      `Gender: ${gender}`,
+      `Email: ${email}`,
       20,
       50
     );
 
     doc.text(
-      `Phone: ${phone}`,
+      `Gender: ${gender}`,
       20,
       60
     );
 
     doc.text(
-      `Place: ${place}`,
+      `Phone: ${phone}`,
       20,
       70
     );
 
     doc.text(
-      `Doctor: ${doctorName}`,
+      `Place: ${place}`,
       20,
       80
     );
 
     doc.text(
-      `Date: ${date}`,
+      `Doctor: ${doctorName}`,
       20,
       90
     );
 
     doc.text(
-      `Time: ${time}`,
+      `Date: ${date}`,
       20,
       100
+    );
+
+    doc.text(
+      `Time: ${time}`,
+      20,
+      110
     );
 
     doc.save(
@@ -107,6 +116,7 @@ function Appointments() {
         "http://localhost:5000/api/appointments/book",
         {
           patientName,
+          email,
           gender,
           phone,
           place,
@@ -122,6 +132,13 @@ function Appointments() {
       );
 
       alert(res.data.message);
+
+      setPatientName("");
+      setEmail("");
+      setGender("");
+      setPhone("");
+      setPlace("");
+      setDate("");
 
     } catch (error) {
       console.log(error);
@@ -174,6 +191,7 @@ function Appointments() {
           <label>
             Patient Name
           </label>
+
           <input
             type="text"
             value={patientName}
@@ -186,7 +204,22 @@ function Appointments() {
             style={inputStyle}
           />
 
+          <label>Email</label>
+
+          <input
+            type="email"
+            value={email}
+            onChange={(e) =>
+              setEmail(
+                e.target.value
+              )
+            }
+            required
+            style={inputStyle}
+          />
+
           <label>Gender</label>
+
           <select
             value={gender}
             onChange={(e) =>
@@ -213,6 +246,7 @@ function Appointments() {
           <label>
             Phone Number
           </label>
+
           <input
             type="tel"
             value={phone}
@@ -226,6 +260,7 @@ function Appointments() {
           />
 
           <label>Place</label>
+
           <input
             type="text"
             value={place}
@@ -239,6 +274,7 @@ function Appointments() {
           />
 
           <label>Doctor</label>
+
           <input
             type="text"
             value={doctorName}
@@ -247,6 +283,7 @@ function Appointments() {
           />
 
           <label>Date</label>
+
           <input
             type="date"
             value={date}
@@ -262,6 +299,7 @@ function Appointments() {
           <label>
             Selected Slot
           </label>
+
           <input
             type="text"
             value={time}

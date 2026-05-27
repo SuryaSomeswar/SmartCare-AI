@@ -9,11 +9,10 @@ function Footer() {
         marginTop: "50px",
       }}
     >
-      <h3>🏥 Smart Hospital</h3>
+      <h3>🏥 SmartCare AI</h3>
 
       <p>
-        Making Healthcare Accessible &
-        Efficient
+        🏥 SmartCare AI is a modern healthcare management platform designed to simplify appointment booking, reduce patient waiting time, and enhance hospital efficiency through smart digital solutions. Our mission is to make healthcare faster, smarter, and more accessible for everyone.
       </p>
 
       <p>

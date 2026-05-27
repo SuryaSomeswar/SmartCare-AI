@@ -5,30 +5,32 @@ const Appointment = require("../models/Appointment");
 const auth = require("../middleware/authMiddleware");
 const sendMail = require("../utils/sendMail");
 
-// Protected Route
+// Book Appointment
 router.post("/book", auth, async (req, res) => {
   try {
-    const appointment = new Appointment(req.body);
+    const appointment = new Appointment(
+      req.body
+    );
 
     await appointment.save();
 
-    await sendMail(
-      req.body.email,
-      "Appointment Confirmed",
+    //await sendMail(
+      //req.body.email,
+      //"Appointment Confirmed",
       `
-Appointment Confirmed
+    //  Appointment Confirmed
 
-Patient: ${req.body.patientName}
+//Patient: ${req.body.patientName}
 
-Doctor: ${req.body.doctorName}
+//Doctor: ${req.body.doctorName}
 
-Date: ${req.body.date}
+//Date: ${req.body.date}
 
-Time: ${req.body.time}
+//Time: ${req.body.time}
 
-Thank you for choosing Smart Hospital.
+//Thank you for choosing Smart Hospital.
       `
-    );
+   // );
 
     res.status(201).json({
       message:
@@ -39,18 +41,19 @@ Thank you for choosing Smart Hospital.
     console.log(error);
 
     res.status(500).json({
-      message:
-        "Error Booking Appointment",
+      message: error.message,
     });
   }
 });
 
+// Get All Appointments
 router.get("/", async (req, res) => {
   try {
     const appointments =
       await Appointment.find();
 
     res.json(appointments);
+
   } catch (error) {
     res.status(500).json({
       message:
@@ -59,6 +62,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Cancel Appointment
 router.delete("/:id", async (req, res) => {
   try {
     await Appointment.findByIdAndDelete(
@@ -69,10 +73,31 @@ router.delete("/:id", async (req, res) => {
       message:
         "Appointment Cancelled Successfully",
     });
+
   } catch (error) {
     res.status(500).json({
       message:
         "Error Cancelling Appointment",
+    });
+  }
+});
+// Update Appointment Status
+router.put("/:id", async (req, res) => {
+  try {
+    const appointment =
+      await Appointment.findByIdAndUpdate(
+        req.params.id,
+        {
+          status: req.body.status,
+        },
+        { new: true }
+      );
+
+    res.json(appointment);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
     });
   }
 });
