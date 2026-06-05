@@ -101,11 +101,22 @@ if (isStaff) {
               <strong>Time:</strong>{" "}
               {appointment.time}
             </p> 
-            <p>
+<p>
   <strong>Status:</strong>{" "}
-  {appointment.status}
+  <span
+    style={{
+      color:
+        appointment.status === "Cancelled"
+          ? "red"
+          : appointment.status === "Completed"
+          ? "green"
+          : "orange",
+      fontWeight: "bold",
+    }}
+  >
+    {appointment.status}
+  </span>
 </p>
-
 
             {localStorage.getItem("staff") === "true" && (
   <button
