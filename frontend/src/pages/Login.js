@@ -77,121 +77,131 @@ const handleLogin = async () => {
   }
 };
 
-  return (
+ return (
+  <div
+    style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      background: "#f5f7fb",
+      padding: "20px",
+      boxSizing: "border-box",
+    }}
+  >
     <div
       style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#f5f7fb",
+        textAlign: "center",
+        marginBottom: "30px",
+        width: "100%",
+        maxWidth: "500px",
       }}
     >
-      <div
+      <h1
+        style={{
+          fontSize: "clamp(32px, 8vw, 48px)",
+          color: "#2563eb",
+          margin: 0,
+        }}
+      >
+        🏥 SmartCare AI
+      </h1>
+
+      <p
+        style={{
+          color: "#555",
+          fontSize: "clamp(14px, 4vw, 18px)",
+          marginTop: "10px",
+        }}
+      >
+        Intelligent Hospital Appointment &
+        Healthcare Management System
+      </p>
+    </div>
+
+    <div
+      style={{
+        background: "#fff",
+        padding: "30px",
+        borderRadius: "12px",
+        boxShadow:
+          "0 4px 12px rgba(0,0,0,0.1)",
+        width: "100%",
+        maxWidth: "350px",
+        boxSizing: "border-box",
+      }}
+    >
+      <h2
         style={{
           textAlign: "center",
-          marginBottom: "30px",
+          marginBottom: "20px",
         }}
       >
-        <h1
-          style={{
-            fontSize: "48px",
-            color: "#2563eb",
-            margin: 0,
-          }}
-        >
-          🏥 SmartCare AI
-        </h1>
+        🔐 Login
+      </h2>
 
-        <p
-          style={{
-            color: "#555",
-            fontSize: "18px",
-            marginTop: "10px",
-          }}
-        >
-          Intelligent Hospital Appointment &
-          Healthcare Management System
-        </p>
-      </div>
-
-      <div
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) =>
+          setEmail(e.target.value)
+        }
+        required
         style={{
-          background: "#fff",
-          padding: "40px",
-          borderRadius: "12px",
-          boxShadow:
-            "0 4px 12px rgba(0,0,0,0.1)",
-          width: "350px",
+          width: "100%",
+          padding: "10px",
+          marginBottom: "15px",
+          boxSizing: "border-box",
+        }}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) =>
+          setPassword(e.target.value)
+        }
+        required
+        style={{
+          width: "100%",
+          padding: "10px",
+          marginBottom: "15px",
+          boxSizing: "border-box",
+        }}
+      />
+
+      <button
+        onClick={handleLogin}
+        style={{
+          width: "100%",
+          background: "#2563eb",
+          color: "white",
+          border: "none",
+          padding: "12px",
+          borderRadius: "8px",
+          cursor: "pointer",
         }}
       >
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "20px",
-          }}
-        >
-          🔐 Login
-        </h2>
+        Login
+      </button>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "15px",
-          }}
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
-          style={{
-            width: "100%",
-            padding: "10px",
-            marginBottom: "15px",
-          }}
-        />
-
-        <button
-          onClick={handleLogin}
-          style={{
-            width: "100%",
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            padding: "12px",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "15px",
-          }}
-        >
-          Don't have an account?{" "}
-          <Link to="/register">
-            Register
-          </Link>
-        </p>
-      </div>
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: "15px",
+        }}
+      >
+        Don't have an account?{" "}
+        <Link to="/register">
+          Register
+        </Link>
+      </p>
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;
