@@ -59,6 +59,30 @@ if (isStaff) {
       alert("Failed to Cancel Appointment");
     }
   };
+  const updateStatus = async (
+  id,
+  status
+) => {
+  try {
+    await axios.put(
+      `https://smartcare-ai.onrender.com/api/appointments/${id}`,
+      { status }
+    );
+
+    alert(
+      `Appointment marked as ${status}`
+    );
+
+    fetchAppointments();
+
+  } catch (error) {
+    console.log(error);
+    alert(
+      "Failed to update status"
+    );
+  }
+};
+  
 
   return (
     <div
@@ -118,25 +142,90 @@ if (isStaff) {
   </span>
 </p>
 
-            {localStorage.getItem("staff") === "true" && (
-  <button
-    onClick={() =>
-      cancelAppointment(
-        appointment._id
-      )
-    }
+           {localStorage.getItem("staff") === "true" && (
+  <div
     style={{
-      background: "#dc2626",
-      color: "white",
-      border: "none",
-      padding: "10px 15px",
-      borderRadius: "8px",
-      cursor: "pointer",
+      display: "flex",
+      gap: "10px",
       marginTop: "10px",
+      flexWrap: "wrap",
     }}
   >
-    Cancel Appointment
-  </button>
+    <button
+      onClick={() =>
+        updateStatus(
+          appointment._id,
+          "Confirmed"
+        )
+      }
+      style={{
+        background: "#2563eb",
+        color: "white",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "8px",
+        cursor: "pointer",
+      }}
+    >
+      ✅ Confirm
+    </button>
+
+    <button
+      onClick={() =>
+        updateStatus(
+          appointment._id,
+          "Completed"
+        )
+      }
+      style={{
+        background: "#16a34a",
+        color: "white",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "8px",
+        cursor: "pointer",
+      }}
+    >
+      🎉 Complete
+    </button>
+
+    <button
+      onClick={() =>
+        updateStatus(
+          appointment._id,
+          "No Show"
+        )
+      }
+      style={{
+        background: "#f59e0b",
+        color: "white",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "8px",
+        cursor: "pointer",
+      }}
+    >
+      ❌ No Show
+    </button>
+
+    <button
+      onClick={() =>
+        cancelAppointment(
+          appointment._id
+        )
+      }
+      style={{
+        background: "#dc2626",
+        color: "white",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "8px",
+        cursor: "pointer",
+      }}
+    >
+      🚫 Cancel
+    </button>
+  </div>
 )}
           </div>
         ))
