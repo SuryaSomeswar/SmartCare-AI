@@ -65,6 +65,10 @@ const handleLogin = async () => {
       "token",
       res.data.token
     );
+   localStorage.setItem(
+  "email",
+  email.trim()
+);
 
     alert(
       "Login Successful"
