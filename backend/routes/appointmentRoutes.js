@@ -6,9 +6,26 @@ const auth = require("../middleware/authMiddleware");
 const sendMail = require("../utils/sendMail");
 
 // Book Appointment
+// Book Appointment
 router.post("/book", auth, async (req, res) => {
   try {
 
+    // Prevent booking past dates
+    const selectedDate =
+      new Date(req.body.date);
+
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
+      return res.status(400).json({
+        message:
+          "Cannot book appointments for past dates",
+      });
+    }
+
+    // Prevent duplicate slot booking
     const existingAppointment =
       await Appointment.findOne({
         doctorName: req.body.doctorName,
