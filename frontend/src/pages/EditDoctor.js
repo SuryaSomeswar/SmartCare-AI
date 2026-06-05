@@ -16,7 +16,7 @@ function EditDoctor() {
     const fetchDoctor = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/doctors"
+          "https://smartcare-ai.onrender.com/api/doctors"
         );
 
         const doctor = res.data.find(
@@ -45,7 +45,7 @@ function EditDoctor() {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/doctors/${id}`,
+        `https://smartcare-ai.onrender.com/api/doctors/${id}`,
         {
           name,
           specialization,
