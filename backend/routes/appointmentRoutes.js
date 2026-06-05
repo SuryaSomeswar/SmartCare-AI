@@ -6,7 +6,6 @@ const auth = require("../middleware/authMiddleware");
 const sendMail = require("../utils/sendMail");
 
 // Book Appointment
-// Book Appointment
 router.post("/book", auth, async (req, res) => {
   try {
 
@@ -77,13 +76,20 @@ router.get("/", async (req, res) => {
 // Cancel Appointment
 router.delete("/:id", async (req, res) => {
   try {
-    await Appointment.findByIdAndDelete(
-      req.params.id
-    );
+
+    const appointment =
+      await Appointment.findByIdAndUpdate(
+        req.params.id,
+        {
+          status: "Cancelled",
+        },
+        { new: true }
+      );
 
     res.json({
       message:
         "Appointment Cancelled Successfully",
+      appointment,
     });
 
   } catch (error) {
