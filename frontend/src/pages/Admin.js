@@ -33,17 +33,17 @@ function Admin() {
     try {
       const doctors =
         await axios.get(
-          "http://localhost:5000/api/doctors"
+          "https://smartcare-ai.onrender.com/api/auth/login"
         );
 
       const appointments =
         await axios.get(
-          "http://localhost:5000/api/appointments"
+            "https://smartcare-ai.onrender.com/api/auth/login"
         );
 
       const users =
         await axios.get(
-          "http://localhost:5000/api/users"
+            "https://smartcare-ai.onrender.com/api/auth/login"
         );
 
       setDoctorCount(
