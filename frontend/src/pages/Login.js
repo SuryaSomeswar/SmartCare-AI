@@ -12,70 +12,55 @@ function Login() {
     useState("");
 const handleLogin = async () => {
   try {
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    // Staff Login
-    if (
-      email.trim().toLowerCase() ===
-        "admin@gmail.com" &&
-      password.trim() === "admin123"
-    ) {
-      console.log(
-        "STAFF LOGIN SUCCESS"
-      );
-
-      localStorage.setItem(
-        "staff",
-        "true"
-      );
-
-      localStorage.setItem(
-        "token",
-        "staff-token"
-      );
-
-      alert(
-        "Staff Login Successful"
-      );console.log(
-  "Staff Value:",
-  localStorage.getItem("staff")
-);
-
-      window.location.href =
-        "/admin";
-
-      return;
-    }
-
-    // Normal User Login
     const res = await axios.post(
-     "https://smartcare-ai.onrender.com/api/auth/login",
+      "https://smartcare-ai.onrender.com/api/auth/login",
       {
         email: email.trim(),
         password: password.trim(),
       }
     );
 
-    localStorage.removeItem(
-      "staff"
-    );
-
     localStorage.setItem(
       "token",
       res.data.token
     );
-   localStorage.setItem(
-  "email",
-  email.trim()
-);
 
-    alert(
-      "Login Successful"
+    localStorage.setItem(
+      "role",
+      res.data.role
     );
 
-    window.location.href =
-      "/home";
+    localStorage.setItem(
+      "email",
+      email.trim()
+    );
+
+    if (
+      res.data.role === "staff"
+    ) {
+      localStorage.setItem(
+        "staff",
+        "true"
+      );
+
+      alert(
+        "Staff Login Successful"
+      );
+
+      window.location.href =
+        "/admin";
+    } else {
+      localStorage.removeItem(
+        "staff"
+      );
+
+      alert(
+        "Login Successful"
+      );
+
+      window.location.href =
+        "/home";
+    }
 
   } catch (error) {
     console.error(error);
