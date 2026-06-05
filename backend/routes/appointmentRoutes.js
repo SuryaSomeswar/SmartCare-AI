@@ -8,29 +8,25 @@ const sendMail = require("../utils/sendMail");
 // Book Appointment
 router.post("/book", auth, async (req, res) => {
   try {
-    const appointment = new Appointment(
-      req.body
-    );
+
+    const existingAppointment =
+      await Appointment.findOne({
+        doctorName: req.body.doctorName,
+        date: req.body.date,
+        time: req.body.time,
+      });
+
+    if (existingAppointment) {
+      return res.status(400).json({
+        message:
+          "This slot is already booked",
+      });
+    }
+
+    const appointment =
+      new Appointment(req.body);
 
     await appointment.save();
-
-    //await sendMail(
-      //req.body.email,
-      //"Appointment Confirmed",
-      `
-    //  Appointment Confirmed
-
-//Patient: ${req.body.patientName}
-
-//Doctor: ${req.body.doctorName}
-
-//Date: ${req.body.date}
-
-//Time: ${req.body.time}
-
-//Thank you for choosing Smart Hospital.
-      `
-   // );
 
     res.status(201).json({
       message:
@@ -45,7 +41,6 @@ router.post("/book", auth, async (req, res) => {
     });
   }
 });
-
 // Get All Appointments
 router.get("/", async (req, res) => {
   try {
