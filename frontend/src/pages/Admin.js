@@ -33,17 +33,17 @@ function Admin() {
     try {
       const doctors =
         await axios.get(
-          "https://smartcare-ai.onrender.com/api/auth/login"
+            "https://smartcare-ai.onrender.com/api/doctors"
         );
 
       const appointments =
         await axios.get(
-            "https://smartcare-ai.onrender.com/api/auth/login"
+            "https://smartcare-ai.onrender.com/api/appointments"
         );
 
       const users =
         await axios.get(
-            "https://smartcare-ai.onrender.com/api/auth/login"
+            "https://smartcare-ai.onrender.com/api/users"
         );
 
       setDoctorCount(
@@ -205,5 +205,47 @@ function Admin() {
     </div>
   );
 }
+<div
+  style={{
+    display: "flex",
+    gap: "15px",
+    marginTop: "20px",
+    flexWrap: "wrap",
+  }}
+>
+  <Link to="/appointments">
+    <button
+      style={{
+        background: "#10b981",
+        color: "white",
+        border: "none",
+        padding: "12px 20px",
+        borderRadius: "10px",
+        fontSize: "15px",
+        fontWeight: "600",
+        cursor: "pointer",
+      }}
+    >
+      📅 Manage Appointments
+    </button>
+  </Link>
+
+  <Link to="/users">
+    <button
+      style={{
+        background: "#8b5cf6",
+        color: "white",
+        border: "none",
+        padding: "12px 20px",
+        borderRadius: "10px",
+        fontSize: "15px",
+        fontWeight: "600",
+        cursor: "pointer",
+      }}
+    >
+      👥 Manage Users
+    </button>
+  </Link>
+</div>
 
 export default Admin;
