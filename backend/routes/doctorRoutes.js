@@ -98,6 +98,31 @@ if (existingReview) {
 // Delete Doctor
 router.delete("/:id", async (req, res) => {
   try {
+
+    const doctor =
+      await Doctor.findById(
+        req.params.id
+      );
+
+    if (!doctor) {
+      return res.status(404).json({
+        message:
+          "Doctor Not Found",
+      });
+    }
+
+    const existingAppointments =
+      await Appointment.findOne({
+        doctorName: doctor.name,
+      });
+
+    if (existingAppointments) {
+      return res.status(400).json({
+        message:
+          "Cannot delete doctor with existing appointments",
+      });
+    }
+
     await Doctor.findByIdAndDelete(
       req.params.id
     );
@@ -106,6 +131,7 @@ router.delete("/:id", async (req, res) => {
       message:
         "Doctor Deleted Successfully",
     });
+
   } catch (error) {
     res.status(500).json({
       message:
