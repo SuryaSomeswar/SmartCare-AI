@@ -4,14 +4,50 @@ const Doctor = require("../models/Doctor");
 const router = express.Router();
 
 // Get All Doctors
+const Appointment = require("../models/Appointment");
+
 router.get("/", async (req, res) => {
   try {
     const doctors = await Doctor.find();
 
-    res.json(doctors);
+    const appointments =
+      await Appointment.find({
+        status: {
+          $ne: "Cancelled",
+        },
+      });
+
+    const updatedDoctors =
+      doctors.map((doctor) => {
+        const bookedSlots =
+          appointments
+            .filter(
+              (appointment) =>
+                appointment.doctorName ===
+                doctor.name
+            )
+            .map(
+              (appointment) =>
+                appointment.time
+            );
+
+        return {
+          ...doctor._doc,
+          availableSlots:
+            doctor.slots.filter(
+              (slot) =>
+                !bookedSlots.includes(
+                  slot
+                )
+            ),
+        };
+      });
+
+    res.json(updatedDoctors);
   } catch (error) {
     res.status(500).json({
-      message: "Error Fetching Doctors",
+      message:
+        "Error Fetching Doctors",
     });
   }
 });
