@@ -37,7 +37,10 @@ const handleLogin = async () => {
 
       alert(
         "Staff Login Successful"
-      );
+      );console.log(
+  "Staff Value:",
+  localStorage.getItem("staff")
+);
 
       window.location.href =
         "/admin";
