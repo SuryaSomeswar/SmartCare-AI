@@ -47,7 +47,7 @@ const handleLogin = async () => {
 
     // Normal User Login
     const res = await axios.post(
-      "http://localhost:5000/api/auth/login",
+     "https://smartcare-ai.onrender.com/api/auth/login",
       {
         email: email.trim(),
         password: password.trim(),
