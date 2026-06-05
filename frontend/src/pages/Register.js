@@ -14,14 +14,17 @@ function Register() {
     try {
       const res = await axios.post(
         "https://smartcare-ai.onrender.com/api/auth/register",
-        {
-          name,
-          email,
-          password,
-        }
+       {
+  name: name.trim(),
+  email: email.trim(),
+  password: password.trim(),
+}
       );
 
       alert(res.data.message);
+      setName("");
+setEmail("");
+setPassword("");
 
       navigate("/");
     } catch (error) {
@@ -96,12 +99,13 @@ function Register() {
         </h2>
 
         <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) =>
-            setName(e.target.value)
-          }
+           type="text"
+  placeholder="Full Name"
+  value={name}
+  onChange={(e) =>
+    setName(e.target.value)
+  }
+  required
           style={{
             width: "100%",
             padding: "10px",
@@ -110,12 +114,13 @@ function Register() {
         />
 
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
+           type="email"
+  placeholder="Email"
+  value={email}
+  onChange={(e) =>
+    setEmail(e.target.value)
+  }
+  required
           style={{
             width: "100%",
             padding: "10px",
@@ -124,12 +129,13 @@ function Register() {
         />
 
         <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
+           type="password"
+  placeholder="Password"
+  value={password}
+  onChange={(e) =>
+    setPassword(e.target.value)
+  }
+  required
           style={{
             width: "100%",
             padding: "10px",
