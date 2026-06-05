@@ -107,9 +107,10 @@ router.post("/login", async (req, res) => {
     );
 
     res.json({
-      token,
-      message: "Login Successful",
-    });
+  token,
+  role: user.role,
+  message: "Login Successful",
+});
   } catch (error) {
     res.status(500).json(error);
   }
