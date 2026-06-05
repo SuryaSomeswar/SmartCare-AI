@@ -51,7 +51,10 @@ app.use(
   "/api/users",
   require("./routes/userRoutes")
 );
-
+app.use(
+  "/api/feedback",
+  require("./routes/feedbackRoutes")
+);
 // Auto mark Pending appointments as No Show after 24 hours
 setInterval(async () => {
   try {
