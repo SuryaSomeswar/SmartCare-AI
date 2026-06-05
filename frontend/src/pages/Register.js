@@ -13,7 +13,7 @@ function Register() {
   const handleRegister = async () => {
     try {
       const res = await axios.post(
-        "https://smartcare-ai.onrender.com/api/auth/login",
+        "https://smartcare-ai.onrender.com/api/auth/register",
         {
           name,
           email,
