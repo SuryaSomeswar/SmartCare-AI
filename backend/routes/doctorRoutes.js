@@ -45,6 +45,19 @@ router.post("/:id/review", async (req, res) => {
         message: "Doctor Not Found",
       });
     }
+    const existingReview =
+  doctor.reviews.find(
+    (review) =>
+      review.patientName ===
+      req.body.patientName
+  );
+
+if (existingReview) {
+  return res.status(400).json({
+    message:
+      "You have already reviewed this doctor",
+  });
+}
 
     doctor.reviews.push({
       patientName:
