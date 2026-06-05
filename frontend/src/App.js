@@ -321,36 +321,36 @@ function App() {
 <Route
   path="/admin"
   element={
-    localStorage.getItem("staff") === "true"
-      ? <Admin />
-      : <Home />
+    <StaffRoute>
+      <Admin />
+    </StaffRoute>
   }
 />
 
 <Route
   path="/add-doctor"
   element={
-    localStorage.getItem("staff") === "true"
-      ? <AddDoctor />
-      : <Home />
+    <StaffRoute>
+      <AddDoctor />
+    </StaffRoute>
   }
 />
 
 <Route
   path="/users"
   element={
-    localStorage.getItem("staff") === "true"
-      ? <Users />
-      : <Home />
+    <StaffRoute>
+      <Users />
+    </StaffRoute>
   }
 />
 
 <Route
   path="/edit-doctor/:id"
   element={
-    localStorage.getItem("staff") === "true"
-      ? <EditDoctor />
-      : <Home />
+    <StaffRoute>
+      <EditDoctor />
+    </StaffRoute>
   }
 />
 
