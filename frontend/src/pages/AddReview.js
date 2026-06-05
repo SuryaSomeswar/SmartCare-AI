@@ -21,7 +21,7 @@ function AddReview() {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/doctors/${id}/review`,
+        `https://smartcare-ai.onrender.com/api/doctors/${id}/review,
         {
           patientName,
           rating,
