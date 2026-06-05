@@ -2,7 +2,7 @@ function Home() {
   return (
     <div className="container">
       <nav className="navbar">
-        <h2>🏥 Smart Hospital</h2>
+        <h2>🏥 SmartCare AI</h2>
 
         <div>
           <button>Login</button>
