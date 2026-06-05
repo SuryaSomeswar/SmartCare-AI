@@ -25,7 +25,8 @@ function AddDoctor() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/doctors/add",
+        const res = await axios.post(
+  "https://smartcare-ai.onrender.com/api/doctors/add",
         {
           name,
           specialization,
