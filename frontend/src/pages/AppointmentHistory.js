@@ -100,26 +100,33 @@ if (isStaff) {
             <p>
               <strong>Time:</strong>{" "}
               {appointment.time}
-            </p>
+            </p> 
+            <p>
+  <strong>Status:</strong>{" "}
+  {appointment.status}
+</p>
 
-            <button
-              onClick={() =>
-                cancelAppointment(
-                  appointment._id
-                )
-              }
-              style={{
-                background: "#dc2626",
-                color: "white",
-                border: "none",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                marginTop: "10px",
-              }}
-            >
-              Cancel Appointment
-            </button>
+
+            {localStorage.getItem("staff") === "true" && (
+  <button
+    onClick={() =>
+      cancelAppointment(
+        appointment._id
+      )
+    }
+    style={{
+      background: "#dc2626",
+      color: "white",
+      border: "none",
+      padding: "10px 15px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      marginTop: "10px",
+    }}
+  >
+    Cancel Appointment
+  </button>
+)}
           </div>
         ))
       )}
