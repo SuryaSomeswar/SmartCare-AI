@@ -13,7 +13,7 @@ function Feedback() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/feedback",
+        "https://smartcare-ai.onrender.com/api/auth/login",
         {
           name,
           message,
