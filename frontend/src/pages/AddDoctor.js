@@ -22,33 +22,30 @@ function AddDoctor() {
 
   const addDoctor = async (e) => {
     e.preventDefault();
-
-    try {
-      const res = await axios.post(
-        const res = await axios.post(
-  "https://smartcare-ai.onrender.com/api/doctors/add",
-        {
-          name,
-          specialization,
-          experience,
-          slots: slots
-            .split(",")
-            .map((slot) => slot.trim()),
-        }
-      );
-
-      alert(res.data.message);
-
-      setName("");
-      setSpecialization("");
-      setExperience("");
-      setSlots("");
-
-    } catch (error) {
-      console.log(error);
-      alert("Failed to Add Doctor");
+try {
+  const res = await axios.post(
+    "https://smartcare-ai.onrender.com/api/doctors/add",
+    {
+      name,
+      specialization,
+      experience,
+      slots: slots
+        .split(",")
+        .map((slot) => slot.trim()),
     }
-  };
+  );
+
+  alert(res.data.message);
+
+  setName("");
+  setSpecialization("");
+  setExperience("");
+  setSlots("");
+
+} catch (error) {
+  console.log(error);
+  alert("Failed to Add Doctor");
+}
 
   return (
     <div
