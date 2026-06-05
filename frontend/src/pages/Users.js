@@ -3,41 +3,37 @@ import axios from "axios";
 
 function Users() {
   if (
-  localStorage.getItem("staff") !== "true"
-) {
-  window.location.href = "/home";
-  return null;
-}
+    localStorage.getItem("staff") !== "true"
+  ) {
+    window.location.href = "/home";
+    return null;
+  }
+
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] =
+    useState(true);
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
- const fetchUsers = async () => {
-  try {
-    const res = await axios.get(
-      "https://smartcare-ai.onrender.com/api/users"
-    );
-
-    setUsers(res.data);
-  } catch (error) {
-    console.log(error);
-  } finally {
-    setLoading(false);
-  }
-};
   const fetchUsers = async () => {
-  ...
-};
+    try {
+      const res = await axios.get(
+        "https://smartcare-ai.onrender.com/api/users"
+      );
 
-if (loading) {
-  return <h2>Loading Users...</h2>;
-}
+      setUsers(res.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-return (
-  <div style={{ padding: "30px" }}>
+  if (loading) {
+    return <h2>Loading Users...</h2>;
+  }
 
   return (
     <div style={{ padding: "30px" }}>
@@ -52,29 +48,29 @@ return (
           borderCollapse: "collapse",
         }}
       >
-        <tbody>
-  {users.length === 0 ? (
-    <tr>
-      <td colSpan="2">
-        No Users Found
-      </td>
-    </tr>
-  ) : (
-    users.map((user) => (
-      <tr key={user._id}>
-        <td>{user.name}</td>
-        <td>{user.email}</td>
-      </tr>
-    ))
-  )}
-</tbody><thead>
+        <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
           </tr>
         </thead>
 
-        
+        <tbody>
+          {users.length === 0 ? (
+            <tr>
+              <td colSpan="2">
+                No Users Found
+              </td>
+            </tr>
+          ) : (
+            users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
       </table>
     </div>
   );
