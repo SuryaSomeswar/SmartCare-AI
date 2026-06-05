@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Users() {
-  if (
-    localStorage.getItem("staff") !== "true"
-  ) {
-    window.location.href = "/home";
-    return null;
-  }
+  
 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] =
     useState(true);
 
   useEffect(() => {
+    if (
+  localStorage.getItem("staff") !== "true"
+) {
+  window.location.href = "/home";
+  return null;
+}
+    
     fetchUsers();
   }, []);
 
