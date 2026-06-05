@@ -15,7 +15,22 @@ function AppointmentHistory() {
         "https://smartcare-ai.onrender.com/api/appointments"
       );
 
-      setAppointments(res.data);
+     const isStaff =
+  localStorage.getItem("staff") === "true";
+
+if (isStaff) {
+  setAppointments(res.data);
+} else {
+  const userEmail =
+    localStorage.getItem("email");
+
+  setAppointments(
+    res.data.filter(
+      (appointment) =>
+        appointment.email === userEmail
+    )
+  );
+}
     } catch (error) {
       console.log(error);
     }
