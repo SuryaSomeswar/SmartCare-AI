@@ -11,7 +11,7 @@ function Users() {
   const fetchUsers = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/users"
+        "https://smartcare-ai.onrender.com/api/users"
       );
 
       setUsers(res.data);

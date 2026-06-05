@@ -16,7 +16,7 @@ function Doctors() {
   const fetchDoctors = async () => {
     try {
       const res = await axios.get(
-        "https://smartcare-ai.onrender.com/api/auth/login"
+          "https://smartcare-ai.onrender.com/api/doctors"
       );
 
       setDoctors(res.data);
@@ -34,7 +34,7 @@ function Doctors() {
 
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/doctors/${id}`
+        `https://smartcare-ai.onrender.com/api/doctors/${id}`
       );
 
       alert(res.data.message);

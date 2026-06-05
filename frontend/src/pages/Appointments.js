@@ -113,8 +113,7 @@ function Appointments() {
         localStorage.getItem("token");
 
       const res = await axios.post(
-        "https://smartcare-ai.onrender.com/api/auth/login",
-        {
+         "https://smartcare-ai.onrender.com/api/appointments/book",        {
           patientName,
           email,
           gender,

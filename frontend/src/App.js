@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import StaffRoute from "./components/StaffRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Doctors from "./pages/Doctors";
@@ -318,42 +318,41 @@ function App() {
             </ProtectedRoute>
           }
         />
+<Route
+  path="/admin"
+  element={
+    localStorage.getItem("staff") === "true"
+      ? <Admin />
+      : <Home />
+  }
+/>
 
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <Admin />
-            </ProtectedRoute>
-          }
-        />
+<Route
+  path="/add-doctor"
+  element={
+    localStorage.getItem("staff") === "true"
+      ? <AddDoctor />
+      : <Home />
+  }
+/>
 
-        <Route
-          path="/add-doctor"
-          element={
-            <ProtectedRoute>
-              <AddDoctor />
-            </ProtectedRoute>
-          }
-        />
+<Route
+  path="/users"
+  element={
+    localStorage.getItem("staff") === "true"
+      ? <Users />
+      : <Home />
+  }
+/>
 
-        <Route
-          path="/users"
-          element={
-            <ProtectedRoute>
-              <Users />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/edit-doctor/:id"
-          element={
-            <ProtectedRoute>
-              <EditDoctor />
-            </ProtectedRoute>
-          }
-        />
+<Route
+  path="/edit-doctor/:id"
+  element={
+    localStorage.getItem("staff") === "true"
+      ? <EditDoctor />
+      : <Home />
+  }
+/>
 
         <Route
           path="/feedback"
