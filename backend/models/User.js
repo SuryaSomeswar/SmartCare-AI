@@ -5,7 +5,11 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
 });
-
+role: {
+  type: String,
+  enum: ["patient", "staff"],
+  default: "patient",
+},
 module.exports = mongoose.model(
   "User",
   userSchema
