@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const Doctor = require("../models/Doctor");
 const Appointment = require("../models/Appointment");
 const auth = require("../middleware/authMiddleware");
 const sendMail = require("../utils/sendMail");
@@ -8,6 +9,25 @@ const sendMail = require("../utils/sendMail");
 // Book Appointment
 router.post("/book", auth, async (req, res) => {
   try {
+    const doctor = await Doctor.findOne({
+  name: req.body.doctorName,
+});
+
+const doctor = await Doctor.findOne({
+  name: req.body.doctorName,
+});
+
+if (!doctor) {
+  return res.status(404).json({
+    message: "Doctor not found",
+  });
+}
+
+if (!doctor.isAvailable) {
+  return res.status(400).json({
+    message: "Doctor is currently on leave",
+  });
+}
 
     // Prevent booking past dates
     const selectedDate =
