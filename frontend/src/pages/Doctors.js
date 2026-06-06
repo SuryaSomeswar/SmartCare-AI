@@ -168,6 +168,12 @@ function Doctors() {
                 <strong>Experience:</strong>{" "}
                 {doctor.experience}
               </p>
+                <p>
+  <strong>Status:</strong>{" "}
+  {doctor.isAvailable
+    ? "✅ Available"
+    : "🚫 On Leave"}
+</p>
 
               <h4
                 style={{
@@ -179,39 +185,46 @@ function Doctors() {
               </h4>
 
               <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "10px",
-                  marginBottom: "20px",
-                }}
-              >
-                {doctor.slots?.map(
-                  (slot, index) => (
-                    <Link
-                      key={index}
-                      to={`/appointments?doctor=${doctor.name}&slot=${slot}`}
-                    >
-                      <button
-                        style={{
-                          background:
-                            "#2563eb",
-                          color: "white",
-                          border: "none",
-                          padding:
-                            "8px 14px",
-                          borderRadius:
-                            "8px",
-                          cursor:
-                            "pointer",
-                        }}
-                      >
-                        {slot}
-                      </button>
-                    </Link>
-                  )
-                )}
-              </div>
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    marginBottom: "20px",
+  }}
+>
+  {doctor.isAvailable ? (
+    doctor.availableSlots?.map(
+      (slot, index) => (
+        <Link
+          key={index}
+          to={`/appointments?doctor=${doctor.name}&slot=${slot}`}
+        >
+          <button
+            style={{
+              background: "#2563eb",
+              color: "white",
+              border: "none",
+              padding: "8px 14px",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
+            {slot}
+          </button>
+        </Link>
+      )
+    )
+  ) : (
+    <p
+      style={{
+        color: "#dc2626",
+        fontWeight: "bold",
+      }}
+    >
+      🚫 Doctor is currently on leave
+    </p>
+  )}
+</div>
 
               <div
                 style={{
