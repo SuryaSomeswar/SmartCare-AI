@@ -9,26 +9,24 @@ const sendMail = require("../utils/sendMail");
 // Book Appointment
 router.post("/book", auth, async (req, res) => {
   try {
+
     const doctor = await Doctor.findOne({
-  name: req.body.doctorName,
-});
+      name: req.body.doctorName,
+    });
 
-const doctor = await Doctor.findOne({
-  name: req.body.doctorName,
-});
+    if (!doctor) {
+      return res.status(404).json({
+        message: "Doctor not found",
+      });
+    }
 
-if (!doctor) {
-  return res.status(404).json({
-    message: "Doctor not found",
-  });
-}
+    if (!doctor.isAvailable) {
+      return res.status(400).json({
+        message: "Doctor is currently on leave",
+      });
+    }
 
-if (!doctor.isAvailable) {
-  return res.status(400).json({
-    message: "Doctor is currently on leave",
-  });
-}
-
+    // Prevent booking past dates
     // Prevent booking past dates
     const selectedDate =
       new Date(req.body.date);
