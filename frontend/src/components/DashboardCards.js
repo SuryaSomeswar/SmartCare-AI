@@ -46,8 +46,7 @@ boxShadow:
 <div
 style={{
 display: "flex",
-justifyContent:
-"space-between",
+justifyContent: "space-between",
 alignItems: "center",
 }}
 > <div>
@@ -63,8 +62,7 @@ Total {title} </p>
 ```
       <h1
         style={{
-          margin:
-            "10px 0 0 0",
+          margin: "10px 0 0 0",
           fontSize: "42px",
         }}
       >
@@ -108,4 +106,5 @@ Total {title} </p>
 }
 
 export default DashboardCards;
+
 
