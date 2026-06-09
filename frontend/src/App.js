@@ -304,6 +304,14 @@ margin: 0,
 function App() {
   return (
     <BrowserRouter>
+  <div
+    style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+    }}
+  >
+    <div style={{ flex: 1 }}>
       <Routes>
 
         <Route
@@ -351,41 +359,42 @@ function App() {
             </ProtectedRoute>
           }
         />
-<Route
-  path="/admin"
-  element={
-    <StaffRoute>
-      <Admin />
-    </StaffRoute>
-  }
-/>
 
-<Route
-  path="/add-doctor"
-  element={
-    <StaffRoute>
-      <AddDoctor />
-    </StaffRoute>
-  }
-/>
+        <Route
+          path="/admin"
+          element={
+            <StaffRoute>
+              <Admin />
+            </StaffRoute>
+          }
+        />
 
-<Route
-  path="/users"
-  element={
-    <StaffRoute>
-      <Users />
-    </StaffRoute>
-  }
-/>
+        <Route
+          path="/add-doctor"
+          element={
+            <StaffRoute>
+              <AddDoctor />
+            </StaffRoute>
+          }
+        />
 
-<Route
-  path="/edit-doctor/:id"
-  element={
-    <StaffRoute>
-      <EditDoctor />
-    </StaffRoute>
-  }
-/>
+        <Route
+          path="/users"
+          element={
+            <StaffRoute>
+              <Users />
+            </StaffRoute>
+          }
+        />
+
+        <Route
+          path="/edit-doctor/:id"
+          element={
+            <StaffRoute>
+              <EditDoctor />
+            </StaffRoute>
+          }
+        />
 
         <Route
           path="/feedback"
@@ -404,21 +413,23 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
-  path="/ai-health"
-  element={
-    <ProtectedRoute>
-      <AIHealthAssistant />
-    </ProtectedRoute>
-  }
-/>
+          path="/ai-health"
+          element={
+            <ProtectedRoute>
+              <AIHealthAssistant />
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
-      
+    </div>
 
-      <Footer />
-  
-    </BrowserRouter>
+    <Footer />
+  </div>
+</BrowserRouter>
+    
   );
 }
 
