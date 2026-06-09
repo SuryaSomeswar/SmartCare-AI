@@ -200,40 +200,6 @@ function Admin() {
             🗑️ Delete Doctors
           </button>
         </Link>
-
-        <Link to="/appointments">
-          <button
-            style={{
-              background: "#10b981",
-              color: "white",
-              border: "none",
-              padding: "12px 20px",
-              borderRadius: "10px",
-              fontSize: "15px",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            📅 Manage Appointments
-          </button>
-        </Link>
-
-        <Link to="/users">
-          <button
-            style={{
-              background: "#8b5cf6",
-              color: "white",
-              border: "none",
-              padding: "12px 20px",
-              borderRadius: "10px",
-              fontSize: "15px",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            👥 Manage Users
-          </button>
-        </Link>
       </div>
     </div>
   );
