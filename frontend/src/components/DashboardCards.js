@@ -1,82 +1,110 @@
 import { Link } from "react-router-dom";
 
 function DashboardCards({
-  title,
-  value,
-  icon,
+title,
+value,
+icon,
 }) {
-  let path = "/";
+let path = "/";
 
-  if (title === "Doctors") {
-    path = "/doctors";
-  }
+if (title === "Doctors") {
+path = "/doctors";
+}
 
-  if (title === "Appointments") {
-    path = "/history";
-  }
+if (title === "Appointments") {
+path = "/history";
+}
 
-  if (title === "Users") {
-    path = "/users";
-  }
+if (title === "Users") {
+path = "/users";
+}
 
-  return (
-    <div
-      style={{
-        background: "#fff",
-        padding: "25px",
-        borderRadius: "16px",
-        boxShadow:
-          "0 8px 20px rgba(0,0,0,0.1)",
-        minWidth: "250px",
-        textAlign: "center",
-        transition: "0.3s",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "40px",
-          marginBottom: "10px",
-          color: "#2563eb",
-        }}
-      >
-        {icon}
-      </div>
+const gradients = {
+Doctors:
+"linear-gradient(135deg,#2563eb,#3b82f6)",
+Appointments:
+"linear-gradient(135deg,#10b981,#22c55e)",
+Users:
+"linear-gradient(135deg,#8b5cf6,#a855f7)",
+};
 
-      <h3
-        style={{
-          color: "#334155",
-          marginBottom: "10px",
-        }}
-      >
-        {title}
-      </h3>
+return (
+<div
+style={{
+background:
+gradients[title] ||
+"linear-gradient(135deg,#2563eb,#3b82f6)",
+color: "white",
+padding: "25px",
+borderRadius: "22px",
+minWidth: "260px",
+flex: 1,
+boxShadow:
+"0 15px 35px rgba(0,0,0,0.15)",
+}}
+>
+<div
+style={{
+display: "flex",
+justifyContent:
+"space-between",
+alignItems: "center",
+}}
+> <div>
+<p
+style={{
+margin: 0,
+opacity: 0.9,
+fontSize: "14px",
+}}
+>
+Total {title} </p>
 
+```
       <h1
         style={{
-          color: "#2563eb",
-          marginBottom: "20px",
+          margin:
+            "10px 0 0 0",
+          fontSize: "42px",
         }}
       >
         {value}
       </h1>
-
-      <Link to={path}>
-        <button
-          style={{
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            padding: "10px 18px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          View {title}
-        </button>
-      </Link>
     </div>
-  );
+
+    <div
+      style={{
+        fontSize: "50px",
+        opacity: 0.9,
+      }}
+    >
+      {icon}
+    </div>
+  </div>
+
+  <Link to={path}>
+    <button
+      style={{
+        marginTop: "20px",
+        width: "100%",
+        background:
+          "rgba(255,255,255,0.2)",
+        color: "white",
+        border:
+          "1px solid rgba(255,255,255,0.3)",
+        padding: "12px",
+        borderRadius: "12px",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      View {title}
+    </button>
+  </Link>
+</div>
+```
+
+);
 }
 
 export default DashboardCards;
