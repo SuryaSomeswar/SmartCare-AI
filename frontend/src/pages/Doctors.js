@@ -85,15 +85,18 @@ function Doctors() {
           onChange={(e) =>
             setSearch(e.target.value)
           }
-          style={{
-            width: "100%",
-            maxWidth: "500px",
-            padding: "12px",
-            borderRadius: "10px",
-            border: "1px solid #d1d5db",
-            marginTop: "20px",
-            fontSize: "15px",
-          }}
+         style={{
+  width: "100%",
+  maxWidth: "700px",
+  padding: "15px 20px",
+  borderRadius: "14px",
+  border: "1px solid #dbeafe",
+  marginTop: "20px",
+  fontSize: "16px",
+  outline: "none",
+  boxShadow:
+    "0 4px 15px rgba(0,0,0,0.05)",
+}}
         />
       </div>
 
@@ -124,22 +127,55 @@ function Doctors() {
             <div
               key={doctor._id}
               style={{
-                background: "#fff",
-                borderRadius: "20px",
-                padding: "25px",
-                boxShadow:
-                  "0 10px 25px rgba(0,0,0,0.08)",
-              }}
+  background: "white",
+  borderRadius: "24px",
+  padding: "30px",
+  border: "1px solid #e5e7eb",
+  boxShadow:
+    "0 10px 30px rgba(0,0,0,0.08)",
+}}
             >
-              <h2
-                style={{
-                  color: "#2563eb",
-                  marginBottom: "10px",
-                }}
-              >
-                👨‍⚕️ {doctor.name}
-              </h2>
+              <div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "15px",
+    flexWrap: "wrap",
+    gap: "10px",
+  }}
+>
+  <h2
+    style={{
+      margin: 0,
+      color: "#0f172a",
+    }}
+  >
+    👨‍⚕️ {doctor.name}
+  </h2>
 
+  <span
+    style={{
+      background:
+        doctor.isAvailable
+          ? "#dcfce7"
+          : "#fee2e2",
+      color:
+        doctor.isAvailable
+          ? "#16a34a"
+          : "#dc2626",
+      padding: "6px 12px",
+      borderRadius: "999px",
+      fontSize: "13px",
+      fontWeight: "bold",
+    }}
+  >
+    {doctor.isAvailable
+      ? "✅ Available"
+      : "🚫 On Leave"}
+  </span>
+</div>
+            
               <p
                 style={{
                   color: "#f59e0b",
@@ -164,10 +200,20 @@ function Doctors() {
                 {doctor.specialization}
               </p>
 
-              <p>
-                <strong>Experience:</strong>{" "}
-                {doctor.experience}
-              </p>
+              <div
+  style={{
+    background: "#eff6ff",
+    color: "#2563eb",
+    padding: "8px 12px",
+    borderRadius: "8px",
+    display: "inline-block",
+    marginTop: "10px",
+    marginBottom: "15px",
+    fontWeight: "600",
+  }}
+>
+  🎓 {doctor.experience}
+</div>
                 <p>
   <strong>Status:</strong>{" "}
   {doctor.isAvailable
@@ -193,7 +239,7 @@ function Doctors() {
   }}
 >
   {doctor.isAvailable ? (
-    doctor.availableSlots?.map(
+    doctor.slots?.map(
       (slot, index) => (
         <Link
           key={index}
@@ -201,13 +247,14 @@ function Doctors() {
         >
           <button
             style={{
-              background: "#2563eb",
-              color: "white",
-              border: "none",
-              padding: "8px 14px",
-              borderRadius: "8px",
-              cursor: "pointer",
-            }}
+  background: "#2563eb",
+  color: "white",
+  border: "none",
+  padding: "10px 18px",
+  borderRadius: "999px",
+  cursor: "pointer",
+  fontWeight: "600",
+}}
           >
             {slot}
           </button>
