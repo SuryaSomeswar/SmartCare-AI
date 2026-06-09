@@ -5,7 +5,8 @@ function Home() {
         minHeight: "100vh",
         background:
           "linear-gradient(135deg,#2563eb,#7c3aed)",
-        color: "white",
+        background:
+  "linear-gradient(135deg,#fdf2f8,#faf5ff)",
         padding: "20px",
       }}
     >
