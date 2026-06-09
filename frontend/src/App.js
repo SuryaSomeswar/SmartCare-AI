@@ -12,261 +12,294 @@ import EditDoctor from "./pages/EditDoctor";
 import Feedback from "./pages/Feedback";
 import AddReview from "./pages/AddReview";
 import AIHealthAssistant from "./pages/AIHealthAssistant";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function Home() {
-  return (
+const [stats, setStats] = useState({
+doctors: 0,
+users: 0,
+appointments: 0,
+});
+
+useEffect(() => {
+fetchStats();
+}, []);
+
+const fetchStats = async () => {
+try {
+const doctors = await axios.get(
+"https://smartcare-ai.onrender.com/api/doctors"
+);
+
+
+  const users = await axios.get(
+    "https://smartcare-ai.onrender.com/api/users"
+  );
+
+  const appointments = await axios.get(
+    "https://smartcare-ai.onrender.com/api/appointments"
+  );
+
+  setStats({
+    doctors: doctors.data.length,
+    users: users.data.length,
+    appointments: appointments.data.length,
+  });
+} catch (error) {
+  console.log(error);
+}
+
+
+};
+
+return (
+<div
+style={{
+minHeight: "100vh",
+background: "#f8fafc",
+}}
+>
+<nav
+style={{
+background: "white",
+padding: "20px 40px",
+display: "flex",
+justifyContent: "space-between",
+alignItems: "center",
+boxShadow: "0 2px 15px rgba(0,0,0,0.08)",
+flexWrap: "wrap",
+}}
+>
+<h2
+style={{
+color: "#2563eb",
+margin: 0,
+}}
+>
+🏥 SmartCare AI </h2>
+
     <div
       style={{
-        minHeight: "100vh",
-        background: "#f5f7fb",
-        padding: "20px",
-        position: "relative",
+        display: "flex",
+        gap: "10px",
+        flexWrap: "wrap",
       }}
     >
-      <button
-  onClick={() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("staff");
-    window.location.href = "/";
-  }}
-  style={{
-    position: "absolute",
-    top: "20px",
-    right: "20px",
-    background: "#dc2626",
-    color: "white",
-    border: "none",
-    padding: "10px 15px",
-    borderRadius: "8px",
-    cursor: "pointer",
-  }}
->
-  🚪 Logout
-</button>
+      <a href="/doctors">
+        <button
+          style={{
+            background: "#2563eb",
+            color: "white",
+            border: "none",
+            padding: "10px 18px",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+        >
+          Book Appointment
+        </button>
+      </a>
 
-      <div
+      <a href="/feedback">
+        <button
+          style={{
+            background: "#ec4899",
+            color: "white",
+            border: "none",
+            padding: "10px 18px",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+        >
+          Feedback
+        </button>
+      </a>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("staff");
+          window.location.href = "/";
+        }}
         style={{
-          textAlign: "center",
-          marginBottom: "50px",
-          marginTop: "40px",
+          background: "#dc2626",
+          color: "white",
+          border: "none",
+          padding: "10px 18px",
+          borderRadius: "10px",
+          cursor: "pointer",
         }}
       >
-        <h1
-          style={{
-            fontSize: "clamp(32px, 6vw, 48px)",
-            color: "#2563eb",
-            marginBottom: "10px",
-          }}
-        >
-          🏥 SmartCare AI
-        </h1>
+          Logout
+      </button>
+    </div>
+  </nav>
 
-        <p
-          style={{
-            fontSize: "clamp(16px, 3vw, 20px)",
-            color: "#555",
-          }}
-        >
-          Intelligent Hospital Appointment &
-          Healthcare Management System
+  <div
+    style={{
+      textAlign: "center",
+      padding: "80px 20px 40px",
+    }}
+  >
+    <h1
+      style={{
+        fontSize: "clamp(40px,7vw,70px)",
+        color: "#0f172a",
+        marginBottom: "20px",
+      }}
+    >
+      Healthcare Made
+      <br />
+      Simple & Smart
+    </h1>
+
+    <p
+      style={{
+        color: "#64748b",
+        fontSize: "20px",
+        maxWidth: "700px",
+        margin: "auto",
+        lineHeight: "1.8",
+      }}
+    >
+      Book appointments, manage records,
+      connect with doctors and use AI-powered
+      healthcare assistance in one platform.
+    </p>
+  </div>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns:
+        "repeat(auto-fit,minmax(250px,1fr))",
+      gap: "20px",
+      padding: "20px 40px",
+    }}
+  >
+    <div
+      style={{
+        background: "white",
+        padding: "30px",
+        borderRadius: "18px",
+        boxShadow:
+          "0 5px 20px rgba(0,0,0,0.08)",
+        textAlign: "center",
+      }}
+    >
+      <h1>{stats.doctors}</h1>
+      <p>Doctors Available</p>
+    </div>
+
+    <div
+      style={{
+        background: "white",
+        padding: "30px",
+        borderRadius: "18px",
+        boxShadow:
+          "0 5px 20px rgba(0,0,0,0.08)",
+        textAlign: "center",
+      }}
+    >
+      <h1>{stats.users}</h1>
+      <p>Registered Patients</p>
+    </div>
+
+    <div
+      style={{
+        background: "white",
+        padding: "30px",
+        borderRadius: "18px",
+        boxShadow:
+          "0 5px 20px rgba(0,0,0,0.08)",
+        textAlign: "center",
+      }}
+    >
+      <h1>{stats.appointments}</h1>
+      <p>Total Appointments</p>
+    </div>
+  </div>
+
+  <div
+    style={{
+      padding: "60px 40px",
+    }}
+  >
+    <h2
+      style={{
+        textAlign: "center",
+        marginBottom: "40px",
+      }}
+    >
+      Why Choose SmartCare AI?
+    </h2>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(280px,1fr))",
+        gap: "20px",
+      }}
+    >
+      <div
+        style={{
+          background: "white",
+          padding: "25px",
+          borderRadius: "16px",
+          boxShadow:
+            "0 5px 15px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h3>🤖 AI Health Assistant</h3>
+        <p>
+          Get doctor recommendations
+          based on symptoms.
         </p>
       </div>
 
       <div
         style={{
-          marginTop: "60px",
-          display: "flex",
-          justifyContent: "center",
-          gap: "20px",
-          flexWrap: "wrap",
+          background: "white",
+          padding: "25px",
+          borderRadius: "16px",
+          boxShadow:
+            "0 5px 15px rgba(0,0,0,0.08)",
         }}
       >
-        <div
-          style={{
-            background: "#fff",
-            padding: "25px",
-            borderRadius: "12px",
-            width: "100%",
-            maxWidth: "280px",
-            textAlign: "center",
-            boxShadow:
-              "0 4px 12px rgba(0,0,0,0.1)",
-          }}
-        >
-          <h2>🤖 AI Assistant</h2>
+        <h3>📅 Easy Appointment Booking</h3>
+        <p>
+          Book appointments instantly
+          with available specialists.
+        </p>
+      </div>
 
-          <p>
-            Get department and doctor
-            recommendations based on symptoms.
-          </p>
-
-          <a href="/ai-health">
-            <button
-              style={{
-                background: "#8b5cf6",
-                color: "white",
-                border: "none",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              Open Assistant
-            </button>
-          </a>
-        </div>
-
-        <div
-          style={{
-            background: "#fff",
-            padding: "25px",
-            borderRadius: "12px",
-            width: "100%",
-            maxWidth: "280px",
-            textAlign: "center",
-            boxShadow:
-              "0 4px 12px rgba(0,0,0,0.1)",
-          }}
-        >
-          <h2>👨‍⚕️ Doctors</h2>
-
-          <p>
-            View specialists and available
-            appointment slots.
-          </p>
-
-          <a href="/doctors">
-            <button
-              style={{
-                background: "#2563eb",
-                color: "white",
-                border: "none",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              View Doctors
-            </button>
-          </a>
-        </div>
-
-        <div
-          style={{
-            background: "#fff",
-            padding: "25px",
-            borderRadius: "12px",
-            width: "100%",
-            maxWidth: "280px",
-            textAlign: "center",
-            boxShadow:
-              "0 4px 12px rgba(0,0,0,0.1)",
-          }}
-        >
-          <h2>📅 Appointments</h2>
-
-          <p>
-            Book and manage appointments
-            easily online.
-          </p>
-
-          <a href="/history">
-            <button
-              style={{
-                background: "#16a34a",
-                color: "white",
-                border: "none",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              View History
-            </button>
-          </a>
-        </div>
-
-        <div
-          style={{
-            background: "#fff",
-            padding: "25px",
-            borderRadius: "12px",
-            width: "100%",
-            maxWidth: "280px",
-            textAlign: "center",
-            boxShadow:
-              "0 4px 12px rgba(0,0,0,0.1)",
-          }}
-        >
-          <h2>📝 Feedback</h2>
-
-          <p>
-            Share your experience and help
-            us improve our services.
-          </p>
-
-          <a href="/feedback">
-            <button
-              style={{
-                background: "#ec4899",
-                color: "white",
-                border: "none",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              Give Feedback
-            </button>
-          </a>
-        </div>
-
-       {localStorage.getItem("staff") ===
-  "true" && (
-  <div
-    style={{
-      background: "#fff",
-      padding: "25px",
-      borderRadius: "12px",
-      width: "100%",
-      maxWidth: "280px",
-      textAlign: "center",
-      boxShadow:
-        "0 4px 12px rgba(0,0,0,0.1)",
-    }}
-  >
-    <h2>🏥 Staff Portal</h2>
-
-    <p>
-      Manage doctors,
-      appointments and users.
-    </p>
-
-    <a href="/admin">
-      <button
+      <div
         style={{
-          background: "#f59e0b",
-          color: "white",
-          border: "none",
-          padding: "10px 15px",
-          borderRadius: "8px",
-          cursor: "pointer",
-          fontWeight: "bold",
+          background: "white",
+          padding: "25px",
+          borderRadius: "16px",
+          boxShadow:
+            "0 5px 15px rgba(0,0,0,0.08)",
         }}
       >
-        Open Dashboard
-      </button>
-    </a>
-  </div>
-)}
-
+        <h3>🔒 Secure Records</h3>
+        <p>
+          Your healthcare information
+          remains protected.
+        </p>
       </div>
     </div>
-  );
+  </div>
+</div>
+
+);
 }
+
 
 function App() {
   return (
