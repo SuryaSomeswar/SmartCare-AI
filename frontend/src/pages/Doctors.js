@@ -45,6 +45,27 @@ function Doctors() {
       alert("Failed to Delete Doctor");
     }
   };
+  const toggleAvailability = async (
+  id,
+  currentStatus
+) => {
+  try {
+    await axios.put(
+      `https://smartcare-ai.onrender.com/api/doctors/${id}`,
+      {
+        isAvailable: !currentStatus,
+      }
+    );
+
+    fetchDoctors();
+
+  } catch (error) {
+    console.log(error);
+    alert(
+      "Failed to update availability"
+    );
+  }
+};
 
   return (
     <div
@@ -214,12 +235,7 @@ function Doctors() {
 >
   🎓 {doctor.experience}
 </div>
-                <p>
-  <strong>Status:</strong>{" "}
-  {doctor.isAvailable
-    ? "✅ Available"
-    : "🚫 On Leave"}
-</p>
+              
 
               <h4
                 style={{
@@ -323,6 +339,29 @@ function Doctors() {
                         ✏️ Edit Doctor
                       </button>
                     </Link>
+                          <button
+  onClick={() =>
+    toggleAvailability(
+      doctor._id,
+      doctor.isAvailable
+    )
+  }
+  style={{
+    background:
+      doctor.isAvailable
+        ? "#dc2626"
+        : "#16a34a",
+    color: "white",
+    border: "none",
+    padding: "10px 15px",
+    borderRadius: "8px",
+    cursor: "pointer",
+  }}
+>
+  {doctor.isAvailable
+    ? "🚫 Mark On Leave"
+    : "✅ Mark Available"}
+</button>
 
                     <button
                       onClick={() =>
@@ -345,7 +384,7 @@ function Doctors() {
                     >
                       🗑 Delete Doctor
                     </button>
-                  </>
+               </>
                 )}
               </div>
             </div>
