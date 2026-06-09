@@ -14,6 +14,8 @@ import AddReview from "./pages/AddReview";
 import AIHealthAssistant from "./pages/AIHealthAssistant";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -417,6 +419,10 @@ function App() {
       
 
       <Footer />
+          <ToastContainer
+  position="top-right"
+  autoClose={3000}
+/>
     </BrowserRouter>
   );
 }
