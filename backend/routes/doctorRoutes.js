@@ -179,15 +179,19 @@ router.delete("/:id", async (req, res) => {
 // Update Doctor
 router.put("/:id", async (req, res) => {
   try {
-    await Doctor.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    );
+    const doctor =
+      await Doctor.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
 
     res.json({
       message:
         "Doctor Updated Successfully",
+      doctor,
     });
+
   } catch (error) {
     res.status(500).json({
       message:
