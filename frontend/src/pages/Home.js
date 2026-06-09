@@ -1,89 +1,252 @@
 function Home() {
   return (
-    <div className="container">
-      <nav className="navbar">
-        <h2>🏥 SmartCare AI</h2>
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg,#2563eb,#7c3aed)",
+        color: "white",
+        padding: "20px",
+      }}
+    >
+      {/* Navbar */}
+      <nav
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          marginBottom: "60px",
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "30px",
+            margin: 0,
+          }}
+        >
+          🏥 SmartCare AI
+        </h2>
 
-        <div>
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            flexWrap: "wrap",
+          }}
+        >
           <a href="/">
-            <button>Login</button>
+            <button
+              style={{
+                padding: "12px 20px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              Login
+            </button>
           </a>
 
           <a href="/register">
-            <button style={{ marginLeft: "10px" }}>
+            <button
+              style={{
+                padding: "12px 20px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
               Register
             </button>
           </a>
 
-          {localStorage.getItem("staff") === "true" && (
+          {localStorage.getItem("staff") ===
+            "true" && (
             <a href="/admin">
               <button
                 style={{
-                  marginLeft: "10px",
                   background: "#f59e0b",
                   color: "white",
                   border: "none",
-                  padding: "10px 15px",
-                  borderRadius: "8px",
+                  padding: "12px 20px",
+                  borderRadius: "10px",
                   cursor: "pointer",
+                  fontWeight: "bold",
                 }}
               >
-                🏥 Staff Dashboard
+                🏥 Dashboard
               </button>
             </a>
           )}
         </div>
       </nav>
 
-      <section className="hero">
-        <h1>Book Appointments Easily</h1>
-
-        <p>
-          Smart healthcare platform for patients
-          and doctors.
-        </p>
-
-        <a href="/doctors">
-          <button className="hero-btn">
-            Book Appointment
-          </button>
-        </a>
-
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("staff");
-            window.location.href = "/";
-          }}
+      {/* Hero Section */}
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "40px",
+        }}
+      >
+        <div
           style={{
-            background: "#dc2626",
-            color: "white",
-            border: "none",
-            padding: "10px 15px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            marginLeft: "10px",
+            flex: 1,
+            minWidth: "300px",
           }}
         >
-          🚪 Logout
-        </button>
-
-        <a href="/feedback">
-          <button
+          <h1
             style={{
-              marginLeft: "10px",
-              padding: "15px 25px",
-              background: "#ec4899",
-              color: "white",
-              border: "none",
-              borderRadius: "10px",
-              cursor: "pointer",
+              fontSize:
+                "clamp(40px,8vw,72px)",
+              lineHeight: "1.1",
+              marginBottom: "20px",
             }}
           >
-            📝 Feedback
-          </button>
-        </a>
-      </section>
+            Future of
+            <br />
+            Healthcare
+          </h1>
+
+          <p
+            style={{
+              fontSize: "20px",
+              opacity: 0.9,
+              lineHeight: "1.7",
+              marginBottom: "30px",
+            }}
+          >
+            SmartCare AI helps patients
+            book appointments instantly,
+            manage healthcare records,
+            and connect with experienced
+            doctors seamlessly.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "15px",
+              flexWrap: "wrap",
+            }}
+          >
+            <a href="/doctors">
+              <button
+                style={{
+                  background: "white",
+                  color: "#2563eb",
+                  border: "none",
+                  padding: "15px 30px",
+                  borderRadius: "12px",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                }}
+              >
+                📅 Book Appointment
+              </button>
+            </a>
+
+            <a href="/feedback">
+              <button
+                style={{
+                  background:
+                    "rgba(255,255,255,0.15)",
+                  color: "white",
+                  border:
+                    "1px solid rgba(255,255,255,0.3)",
+                  padding: "15px 30px",
+                  borderRadius: "12px",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                }}
+              >
+                📝 Feedback
+              </button>
+            </a>
+
+            <button
+              onClick={() => {
+                localStorage.removeItem(
+                  "token"
+                );
+                localStorage.removeItem(
+                  "staff"
+                );
+                window.location.href =
+                  "/";
+              }}
+              style={{
+                background: "#dc2626",
+                color: "white",
+                border: "none",
+                padding: "15px 30px",
+                borderRadius: "12px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}
+            >
+              🚪 Logout
+            </button>
+          </div>
+        </div>
+
+        {/* Right Side Card */}
+        <div
+          style={{
+            flex: 1,
+            minWidth: "300px",
+            background:
+              "rgba(255,255,255,0.12)",
+            backdropFilter: "blur(15px)",
+            border:
+              "1px solid rgba(255,255,255,0.2)",
+            borderRadius: "25px",
+            padding: "30px",
+          }}
+        >
+          <h2>📊 Smart Statistics</h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(2,1fr)",
+              gap: "20px",
+              marginTop: "25px",
+            }}
+          >
+            <div>
+              <h1>50+</h1>
+              <p>Doctors</p>
+            </div>
+
+            <div>
+              <h1>1000+</h1>
+              <p>Patients</p>
+            </div>
+
+            <div>
+              <h1>24/7</h1>
+              <p>Support</p>
+            </div>
+
+            <div>
+              <h1>99%</h1>
+              <p>Satisfaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
