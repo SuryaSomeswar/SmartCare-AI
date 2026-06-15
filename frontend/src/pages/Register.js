@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -75,7 +74,7 @@ function Register() {
         justifyContent: "center",
         alignItems: "center",
         background:
-          "linear-gradient(135deg,#fdf2f8,#faf5ff,#eef2ff)",
+          "linear-gradient(135deg,#fdf2f8,#faf5ff)",
         padding: "20px",
         boxSizing: "border-box",
       }}
@@ -88,32 +87,11 @@ function Register() {
           maxWidth: "500px",
         }}
       >
-        <div
-          style={{
-            display: "inline-block",
-            padding: "8px 18px",
-            borderRadius: "999px",
-            background:
-              "rgba(236,72,153,0.1)",
-            color: "#db2777",
-            fontWeight: "600",
-            marginBottom: "20px",
-          }}
-        >
-          ✨ AI Powered Healthcare Platform
-        </div>
-
         <h1
           style={{
             fontSize:
-              "clamp(42px,8vw,58px)",
-            fontWeight: "800",
-            background:
-              "linear-gradient(135deg,#ec4899,#8b5cf6)",
-            WebkitBackgroundClip:
-              "text",
-            WebkitTextFillColor:
-              "transparent",
+              "clamp(32px,8vw,48px)",
+            color: "#8b5cf6",
             margin: 0,
           }}
         >
@@ -122,30 +100,28 @@ function Register() {
 
         <p
           style={{
-            color: "#64748b",
+            color: "#555",
             fontSize:
               "clamp(14px,4vw,18px)",
-            marginTop: "12px",
+            marginTop: "10px",
           }}
         >
-          Create your account and
-          experience modern healthcare.
+          Intelligent Hospital
+          Appointment &
+          Healthcare Management
+          System
         </p>
       </div>
 
       <div
         style={{
-          background:
-            "rgba(255,255,255,0.85)",
-          backdropFilter: "blur(20px)",
-          padding: "35px",
-          borderRadius: "28px",
-          border:
-            "1px solid rgba(255,255,255,0.5)",
+          background: "#fff",
+          padding: "30px",
+          borderRadius: "20px",
           boxShadow:
-            "0 25px 60px rgba(139,92,246,0.15)",
+            "0 10px 30px rgba(0,0,0,0.08)",
           width: "100%",
-          maxWidth: "420px",
+          maxWidth: "380px",
           boxSizing: "border-box",
         }}
       >
@@ -153,10 +129,9 @@ function Register() {
           style={{
             textAlign: "center",
             marginBottom: "20px",
-            color: "#1e293b",
           }}
         >
-          📝 Create Account
+          📝 Register
         </h2>
 
         {successMessage && (
@@ -165,7 +140,7 @@ function Register() {
               background: "#dcfce7",
               color: "#166534",
               padding: "12px",
-              borderRadius: "12px",
+              borderRadius: "8px",
               marginBottom: "15px",
               textAlign: "center",
               fontWeight: "bold",
@@ -181,7 +156,7 @@ function Register() {
               background: "#fee2e2",
               color: "#991b1b",
               padding: "12px",
-              borderRadius: "12px",
+              borderRadius: "8px",
               marginBottom: "15px",
               textAlign: "center",
               fontWeight: "bold",
@@ -193,59 +168,59 @@ function Register() {
 
         <input
           type="text"
-          placeholder="👤 Full Name"
+          placeholder="Full Name"
           value={name}
           onChange={(e) =>
             setName(e.target.value)
           }
+          required
           style={{
             width: "100%",
-            padding: "14px 16px",
+            padding: "12px",
             marginBottom: "15px",
-            borderRadius: "14px",
+            borderRadius: "8px",
             border:
-              "1px solid #e5e7eb",
-            fontSize: "15px",
+              "1px solid #d1d5db",
             boxSizing: "border-box",
           }}
         />
 
         <input
           type="email"
-          placeholder="📧 Email Address"
+          placeholder="Email"
           value={email}
           onChange={(e) =>
             setEmail(e.target.value)
           }
+          required
           style={{
             width: "100%",
-            padding: "14px 16px",
+            padding: "12px",
             marginBottom: "15px",
-            borderRadius: "14px",
+            borderRadius: "8px",
             border:
-              "1px solid #e5e7eb",
-            fontSize: "15px",
+              "1px solid #d1d5db",
             boxSizing: "border-box",
           }}
         />
 
         <input
           type="password"
-          placeholder="🔒 Password"
+          placeholder="Password"
           value={password}
           onChange={(e) =>
             setPassword(
               e.target.value
             )
           }
+          required
           style={{
             width: "100%",
-            padding: "14px 16px",
-            marginBottom: "18px",
-            borderRadius: "14px",
+            padding: "12px",
+            marginBottom: "15px",
+            borderRadius: "8px",
             border:
-              "1px solid #e5e7eb",
-            fontSize: "15px",
+              "1px solid #d1d5db",
             boxSizing: "border-box",
           }}
         />
@@ -258,33 +233,24 @@ function Register() {
               "linear-gradient(135deg,#ec4899,#8b5cf6)",
             color: "white",
             border: "none",
-            padding: "14px",
-            borderRadius: "14px",
+            padding: "12px",
+            borderRadius: "10px",
             cursor: "pointer",
-            fontWeight: "700",
-            fontSize: "16px",
-            boxShadow:
-              "0 10px 25px rgba(139,92,246,0.25)",
+            fontWeight: "bold",
+            fontSize: "15px",
           }}
         >
-          🚀 Create Account
+          Register
         </button>
 
         <p
           style={{
             textAlign: "center",
-            marginTop: "18px",
-            color: "#64748b",
+            marginTop: "15px",
           }}
         >
           Already have an account?{" "}
-          <Link
-            to="/"
-            style={{
-              color: "#8b5cf6",
-              fontWeight: "bold",
-            }}
-          >
+          <Link to="/">
             Login
           </Link>
         </p>
@@ -294,5 +260,7 @@ function Register() {
 }
 
 export default Register;
+
+
 
 
