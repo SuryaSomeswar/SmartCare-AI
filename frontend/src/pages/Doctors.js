@@ -116,7 +116,6 @@ function Doctors() {
   marginTop: "20px",
   fontSize: "16px",
   outline: "none",
-  boxShadow:
     boxShadow:
   "0 10px 30px rgba(139,92,246,0.15)",
 }}
