@@ -35,7 +35,6 @@ const doctors = await axios.get(
 "https://smartcare-ai.onrender.com/api/doctors"
 );
 
-
   const users = await axios.get(
     "https://smartcare-ai.onrender.com/api/users"
   );
@@ -60,24 +59,28 @@ return (
 <div
 style={{
 minHeight: "100vh",
-background: "#f8fafc",
+background:
+"linear-gradient(135deg,#fdf2f8,#faf5ff)",
 }}
 >
 <nav
 style={{
-background: "white",
+background: "rgba(255,255,255,0.9)",
+backdropFilter: "blur(12px)",
 padding: "20px 40px",
 display: "flex",
 justifyContent: "space-between",
 alignItems: "center",
-boxShadow: "0 2px 15px rgba(0,0,0,0.08)",
+boxShadow:
+"0 10px 30px rgba(139,92,246,0.15)",
 flexWrap: "wrap",
 }}
 >
 <h2
 style={{
-color: "#2563eb",
+color: "#8b5cf6",
 margin: 0,
+fontWeight: "bold",
 }}
 >
 🏥 SmartCare AI </h2>
@@ -92,12 +95,14 @@ margin: 0,
       <a href="/doctors">
         <button
           style={{
-            background: "#2563eb",
+            background:
+              "linear-gradient(135deg,#ec4899,#8b5cf6)",
             color: "white",
             border: "none",
             padding: "10px 18px",
             borderRadius: "10px",
             cursor: "pointer",
+            fontWeight: "600",
           }}
         >
           Book Appointment
@@ -107,12 +112,14 @@ margin: 0,
       <a href="/feedback">
         <button
           style={{
-            background: "#ec4899",
+            background:
+              "linear-gradient(135deg,#8b5cf6,#6366f1)",
             color: "white",
             border: "none",
             padding: "10px 18px",
             borderRadius: "10px",
             cursor: "pointer",
+            fontWeight: "600",
           }}
         >
           Feedback
@@ -126,15 +133,17 @@ margin: 0,
           window.location.href = "/";
         }}
         style={{
-          background: "#dc2626",
+          background:
+            "linear-gradient(135deg,#ef4444,#ec4899)",
           color: "white",
           border: "none",
           padding: "10px 18px",
           borderRadius: "10px",
           cursor: "pointer",
+          fontWeight: "600",
         }}
       >
-          Logout
+        Logout
       </button>
     </div>
   </nav>
@@ -148,8 +157,9 @@ margin: 0,
     <h1
       style={{
         fontSize: "clamp(40px,7vw,70px)",
-        color: "#0f172a",
+        color: "#8b5cf6",
         marginBottom: "20px",
+        fontWeight: "800",
       }}
     >
       Healthcare Made
@@ -183,11 +193,15 @@ margin: 0,
   >
     <div
       style={{
-        background: "white",
+        background:
+          "rgba(255,255,255,0.9)",
+        backdropFilter: "blur(12px)",
         padding: "30px",
-        borderRadius: "18px",
+        borderRadius: "20px",
+        border:
+          "1px solid rgba(255,255,255,0.4)",
         boxShadow:
-          "0 5px 20px rgba(0,0,0,0.08)",
+          "0 10px 30px rgba(139,92,246,0.15)",
         textAlign: "center",
       }}
     >
@@ -197,11 +211,15 @@ margin: 0,
 
     <div
       style={{
-        background: "white",
+        background:
+          "rgba(255,255,255,0.9)",
+        backdropFilter: "blur(12px)",
         padding: "30px",
-        borderRadius: "18px",
+        borderRadius: "20px",
+        border:
+          "1px solid rgba(255,255,255,0.4)",
         boxShadow:
-          "0 5px 20px rgba(0,0,0,0.08)",
+          "0 10px 30px rgba(139,92,246,0.15)",
         textAlign: "center",
       }}
     >
@@ -211,11 +229,15 @@ margin: 0,
 
     <div
       style={{
-        background: "white",
+        background:
+          "rgba(255,255,255,0.9)",
+        backdropFilter: "blur(12px)",
         padding: "30px",
-        borderRadius: "18px",
+        borderRadius: "20px",
+        border:
+          "1px solid rgba(255,255,255,0.4)",
         boxShadow:
-          "0 5px 20px rgba(0,0,0,0.08)",
+          "0 10px 30px rgba(139,92,246,0.15)",
         textAlign: "center",
       }}
     >
@@ -233,6 +255,8 @@ margin: 0,
       style={{
         textAlign: "center",
         marginBottom: "40px",
+        color: "#8b5cf6",
+        fontSize: "36px",
       }}
     >
       Why Choose SmartCare AI?
@@ -248,11 +272,15 @@ margin: 0,
     >
       <div
         style={{
-          background: "white",
+          background:
+            "rgba(255,255,255,0.9)",
+          backdropFilter: "blur(12px)",
           padding: "25px",
-          borderRadius: "16px",
+          borderRadius: "20px",
+          border:
+            "1px solid rgba(255,255,255,0.4)",
           boxShadow:
-            "0 5px 15px rgba(0,0,0,0.08)",
+            "0 10px 30px rgba(139,92,246,0.15)",
         }}
       >
         <h3>🤖 AI Health Assistant</h3>
@@ -264,11 +292,15 @@ margin: 0,
 
       <div
         style={{
-          background: "white",
+          background:
+            "rgba(255,255,255,0.9)",
+          backdropFilter: "blur(12px)",
           padding: "25px",
-          borderRadius: "16px",
+          borderRadius: "20px",
+          border:
+            "1px solid rgba(255,255,255,0.4)",
           boxShadow:
-            "0 5px 15px rgba(0,0,0,0.08)",
+            "0 10px 30px rgba(139,92,246,0.15)",
         }}
       >
         <h3>📅 Easy Appointment Booking</h3>
@@ -280,11 +312,15 @@ margin: 0,
 
       <div
         style={{
-          background: "white",
+          background:
+            "rgba(255,255,255,0.9)",
+          backdropFilter: "blur(12px)",
           padding: "25px",
-          borderRadius: "16px",
+          borderRadius: "20px",
+          border:
+            "1px solid rgba(255,255,255,0.4)",
           boxShadow:
-            "0 5px 15px rgba(0,0,0,0.08)",
+            "0 10px 30px rgba(139,92,246,0.15)",
         }}
       >
         <h3>🔒 Secure Records</h3>
@@ -299,6 +335,7 @@ margin: 0,
 
 );
 }
+
 
 
 function App() {
