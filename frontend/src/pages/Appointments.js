@@ -1,3 +1,4 @@
+
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -32,6 +33,14 @@ function Appointments() {
 
   const [time] =
     useState(selectedSlot);
+
+  const [successMessage,
+    setSuccessMessage] =
+    useState("");
+
+  const [errorMessage,
+    setErrorMessage] =
+    useState("");
 
   const inputStyle = {
     width: "100%",
@@ -108,12 +117,16 @@ function Appointments() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setSuccessMessage("");
+    setErrorMessage("");
+
     try {
       const token =
         localStorage.getItem("token");
 
-      const res = await axios.post(
-         "https://smartcare-ai.onrender.com/api/appointments/book",        {
+      await axios.post(
+        "https://smartcare-ai.onrender.com/api/appointments/book",
+        {
           patientName,
           email,
           gender,
@@ -130,7 +143,13 @@ function Appointments() {
         }
       );
 
-      alert(res.data.message);
+      setSuccessMessage(
+        "✅ Appointment Booked Successfully"
+      );
+
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
 
       setPatientName("");
       setEmail("");
@@ -146,12 +165,18 @@ function Appointments() {
         error.response &&
         error.response.data.message
       ) {
-        alert(
+        setErrorMessage(
           error.response.data.message
         );
       } else {
-        alert("Booking Failed");
+        setErrorMessage(
+          "❌ Booking Failed"
+        );
       }
+
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
@@ -159,7 +184,8 @@ function Appointments() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#f5f7fb",
+        background:
+          "linear-gradient(135deg,#fdf2f8,#faf5ff)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -172,24 +198,54 @@ function Appointments() {
           padding: "40px",
           borderRadius: "20px",
           boxShadow:
-            "0 10px 30px rgba(0,0,0,0.1)",
+            "0 10px 30px rgba(0,0,0,0.08)",
           width: "600px",
         }}
       >
         <h1
           style={{
             textAlign: "center",
-            color: "#2563eb",
+            color: "#8b5cf6",
             marginBottom: "30px",
           }}
         >
           📅 Book Appointment
         </h1>
 
+        {successMessage && (
+          <div
+            style={{
+              background: "#dcfce7",
+              color: "#166534",
+              padding: "12px",
+              borderRadius: "10px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div
+            style={{
+              background: "#fee2e2",
+              color: "#991b1b",
+              padding: "12px",
+              borderRadius: "10px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {errorMessage}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
-          <label>
-            Patient Name
-          </label>
+          <label>Patient Name</label>
 
           <input
             type="text"
@@ -242,9 +298,7 @@ function Appointments() {
             </option>
           </select>
 
-          <label>
-            Phone Number
-          </label>
+          <label>Phone Number</label>
 
           <input
             type="tel"
@@ -310,7 +364,8 @@ function Appointments() {
             type="submit"
             style={{
               width: "100%",
-              background: "#2563eb",
+              background:
+                "linear-gradient(135deg,#ec4899,#8b5cf6)",
               color: "white",
               border: "none",
               padding: "14px",
@@ -349,4 +404,6 @@ function Appointments() {
 }
 
 export default Appointments;
+
+
 
