@@ -5,7 +5,14 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] =
     useState(true);
+  
+const [successMessage,
+setSuccessMessage] =
+useState("");
 
+const [errorMessage,
+setErrorMessage] =
+useState("");
   useEffect(() => {
     if (
       localStorage.getItem("staff") !==
@@ -50,6 +57,38 @@ function Users() {
     );
   }
 
+const resetPassword = async (id) => {
+  const newPassword =
+    prompt("Enter New Password");
+
+  if (!newPassword) return;
+
+  try {
+    const res = await axios.put(
+      `https://smartcare-ai.onrender.com/api/users/reset-password/${id}`,
+      {
+        password: newPassword,
+      }
+    );
+
+    setSuccessMessage(
+      res.data.message
+    );
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+
+  } catch (error) {
+    setErrorMessage(
+      "Failed To Reset Password"
+    );
+
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 3000);
+  }
+};
   return (
     <div
       style={{
@@ -75,6 +114,35 @@ function Users() {
         >
           👥 Registered Users
         </h1>
+            {successMessage && (
+  <div
+    style={{
+      background:"#dcfce7",
+      color:"#166534",
+      padding:"12px",
+      borderRadius:"10px",
+      marginBottom:"15px",
+      fontWeight:"bold",
+    }}
+  >
+    {successMessage}
+  </div>
+)}
+
+{errorMessage && (
+  <div
+    style={{
+      background:"#fee2e2",
+      color:"#991b1b",
+      padding:"12px",
+      borderRadius:"10px",
+      marginBottom:"15px",
+      fontWeight:"bold",
+    }}
+  >
+    {errorMessage}
+  </div>
+)}
 
         <div
           style={{
@@ -116,6 +184,14 @@ function Users() {
                   }}
                 >
                   Email
+                </th>
+                    <th
+                  style={{
+                    padding: "18px",
+                    textAlign: "left",
+                  }}
+                >
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -166,6 +242,24 @@ function Users() {
                       >
                         {user.email}
                       </td>
+                        <td>
+  <button
+    onClick={() =>
+      resetPassword(user._id)
+    }
+    style={{
+      background:
+      "linear-gradient(135deg,#ec4899,#8b5cf6)",
+      color:"white",
+      border:"none",
+      padding:"8px 15px",
+      borderRadius:"8px",
+      cursor:"pointer",
+    }}
+  >
+    🔑 Reset Password
+  </button>
+</td>
                     </tr>
                   )
                 )
