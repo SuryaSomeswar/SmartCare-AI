@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -25,14 +24,6 @@ function Admin() {
 
   const [userCount, setUserCount] =
     useState(0);
-
-  const [successMessage,
-    setSuccessMessage] =
-    useState("");
-
-  const [errorMessage,
-    setErrorMessage] =
-    useState("");
 
   useEffect(() => {
     fetchCounts();
@@ -68,14 +59,6 @@ function Admin() {
       );
     } catch (error) {
       console.log(error);
-
-      setErrorMessage(
-        "❌ Failed to load dashboard data"
-      );
-
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 3000);
     }
   };
 
@@ -90,8 +73,7 @@ function Admin() {
     <div
       style={{
         padding: "30px",
-        background:
-          "linear-gradient(135deg,#fdf2f8,#faf5ff)",
+        background: "#f5f7fb",
         minHeight: "100vh",
         position: "relative",
       }}
@@ -110,8 +92,7 @@ function Admin() {
           position: "absolute",
           top: "20px",
           right: "20px",
-          background:
-            "linear-gradient(135deg,#ec4899,#8b5cf6)",
+          background: "#374151",
           color: "white",
           border: "none",
           padding: "12px 20px",
@@ -126,55 +107,11 @@ function Admin() {
 
       <h1
         style={{
-          marginBottom: "10px",
-          color: "#8b5cf6",
-          fontSize: "42px",
-          fontWeight: "700",
+          marginBottom: "20px",
         }}
       >
         🏥 Admin Dashboard
       </h1>
-
-      <p
-        style={{
-          color: "#64748b",
-          marginBottom: "30px",
-          fontSize: "16px",
-        }}
-      >
-        Manage doctors, appointments and
-        users from one central dashboard.
-      </p>
-
-      {successMessage && (
-        <div
-          style={{
-            background: "#dcfce7",
-            color: "#166534",
-            padding: "12px",
-            borderRadius: "10px",
-            marginBottom: "15px",
-            fontWeight: "bold",
-          }}
-        >
-          {successMessage}
-        </div>
-      )}
-
-      {errorMessage && (
-        <div
-          style={{
-            background: "#fee2e2",
-            color: "#991b1b",
-            padding: "12px",
-            borderRadius: "10px",
-            marginBottom: "15px",
-            fontWeight: "bold",
-          }}
-        >
-          {errorMessage}
-        </div>
-      )}
 
       <div
         style={{
@@ -216,8 +153,7 @@ function Admin() {
         <Link to="/add-doctor">
           <button
             style={{
-              background:
-                "linear-gradient(135deg,#ec4899,#8b5cf6)",
+              background: "#2563eb",
               color: "white",
               border: "none",
               padding: "12px 20px",
@@ -234,8 +170,7 @@ function Admin() {
         <Link to="/doctors">
           <button
             style={{
-              background:
-                "linear-gradient(135deg,#8b5cf6,#6366f1)",
+              background: "#f59e0b",
               color: "white",
               border: "none",
               padding: "12px 20px",
@@ -252,8 +187,7 @@ function Admin() {
         <Link to="/doctors">
           <button
             style={{
-              background:
-                "linear-gradient(135deg,#ef4444,#ec4899)",
+              background: "#dc2626",
               color: "white",
               border: "none",
               padding: "12px 20px",
@@ -272,6 +206,5 @@ function Admin() {
 }
 
 export default Admin;
-
 
 
