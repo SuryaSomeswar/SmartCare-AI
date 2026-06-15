@@ -29,15 +29,14 @@ function AddReview() {
     setErrorMessage("");
 
     try {
-      const res = await axios.post(
-        `https://smartcare-ai.onrender.com/api/doctors/${id}/review`,
-        {
-          patientName,
-          rating,
-          comment,
-        }
-      );
-
+     await axios.post(
+  `https://smartcare-ai.onrender.com/api/doctors/${id}/review`,
+  {
+    patientName,
+    rating,
+    comment,
+  }
+);
       setSuccessMessage(
         "✅ Review Submitted Successfully"
       );
