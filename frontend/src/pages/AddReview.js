@@ -16,12 +16,21 @@ function AddReview() {
   const [comment, setComment] =
     useState("");
 
+  const [successMessage, setSuccessMessage] =
+    useState("");
+
+  const [errorMessage, setErrorMessage] =
+    useState("");
+
   const submitReview = async (e) => {
     e.preventDefault();
 
+    setSuccessMessage("");
+    setErrorMessage("");
+
     try {
       const res = await axios.post(
-       `https://smartcare-ai.onrender.com/api/doctors/${id}/review`,
+        `https://smartcare-ai.onrender.com/api/doctors/${id}/review`,
         {
           patientName,
           rating,
@@ -29,31 +38,44 @@ function AddReview() {
         }
       );
 
-      alert(res.data.message);
+      setSuccessMessage(
+        "✅ Review Submitted Successfully"
+      );
 
-      navigate("/doctors");
+      setTimeout(() => {
+        navigate("/doctors");
+      }, 1500);
 
     } catch (error) {
       console.log(error);
-      alert("Failed to Submit Review");
+
+      setErrorMessage(
+        "❌ Failed to Submit Review"
+      );
+
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
   const inputStyle = {
     width: "100%",
     padding: "12px",
-    border: "1px solid #d1d5db",
+    border: "1px solid #e9d5ff",
     borderRadius: "10px",
     marginBottom: "15px",
     fontSize: "15px",
     boxSizing: "border-box",
+    outline: "none",
   };
 
   return (
     <div
       style={{
         minHeight: "100vh",
-        background: "#f5f7fb",
+        background:
+          "linear-gradient(135deg,#fdf2f8,#faf5ff)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -64,10 +86,11 @@ function AddReview() {
         style={{
           background: "#ffffff",
           padding: "40px",
-          borderRadius: "20px",
+          borderRadius: "24px",
           boxShadow:
-            "0 10px 30px rgba(0,0,0,0.1)",
+            "0 10px 30px rgba(139,92,246,0.15)",
           width: "600px",
+          border: "1px solid #f3e8ff",
         }}
       >
         <h1
@@ -79,6 +102,38 @@ function AddReview() {
         >
           ⭐ Doctor Review
         </h1>
+
+        {successMessage && (
+          <div
+            style={{
+              background: "#dcfce7",
+              color: "#166534",
+              padding: "12px",
+              borderRadius: "10px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div
+            style={{
+              background: "#fee2e2",
+              color: "#991b1b",
+              padding: "12px",
+              borderRadius: "10px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {errorMessage}
+          </div>
+        )}
 
         <form onSubmit={submitReview}>
           <label>
@@ -158,7 +213,8 @@ function AddReview() {
             type="submit"
             style={{
               width: "100%",
-              background: "#8b5cf6",
+              background:
+                "linear-gradient(135deg,#ec4899,#8b5cf6)",
               color: "white",
               border: "none",
               padding: "14px",
@@ -177,3 +233,5 @@ function AddReview() {
 }
 
 export default AddReview;
+
+
