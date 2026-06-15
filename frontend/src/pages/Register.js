@@ -28,7 +28,7 @@ function Register() {
     setErrorMessage("");
 
     try {
-      const res = await axios.post(
+      await axios.post(
         "https://smartcare-ai.onrender.com/api/auth/register",
         {
           name: name.trim(),
@@ -288,62 +288,11 @@ function Register() {
             Login
           </Link>
         </p>
-
-        <div
-          style={{
-            marginTop: "25px",
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(3,1fr)",
-            gap: "10px",
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-              padding: "12px",
-              background: "#faf5ff",
-              borderRadius: "12px",
-              fontSize: "12px",
-            }}
-          >
-            🤖
-            <br />
-            AI Assistant
-          </div>
-
-          <div
-            style={{
-              textAlign: "center",
-              padding: "12px",
-              background: "#fdf2f8",
-              borderRadius: "12px",
-              fontSize: "12px",
-            }}
-          >
-            📅
-            <br />
-            Booking
-          </div>
-
-          <div
-            style={{
-              textAlign: "center",
-              padding: "12px",
-              background: "#eef2ff",
-              borderRadius: "12px",
-              fontSize: "12px",
-            }}
-          >
-            🔒
-            <br />
-            Secure
-          </div>
-        </div>
       </div>
     </div>
   );
 }
 
 export default Register;
+
 
