@@ -72,7 +72,7 @@ function Doctors() {
       style={{
         minHeight: "100vh",
         background:
-  "linear-gradient(135deg,#fdf2f8,#faf5ff)",,
+  "linear-gradient(135deg,#fdf2f8,#faf5ff)",
         padding: "40px",
       }}
     >
@@ -84,7 +84,7 @@ function Doctors() {
       >
         <h1
           style={{
-            color: "#8b5cf6",,
+            color: "#8b5cf6",
             fontSize: "42px",
           }}
         >
@@ -112,7 +112,7 @@ function Doctors() {
   maxWidth: "700px",
   padding: "15px 20px",
   borderRadius: "14px",
-  border: "1px solid #f3e8ff",,
+  border: "1px solid #f3e8ff",
   marginTop: "20px",
   fontSize: "16px",
   outline: "none",
@@ -269,7 +269,7 @@ color: "#8b5cf6",
           <button
             style={{
   background:
-  "linear-gradient(135deg,#ec4899,#8b5cf6)",,
+  "linear-gradient(135deg,#ec4899,#8b5cf6)",
   color: "white",
   border: "none",
   padding: "10px 18px",
@@ -308,7 +308,7 @@ color: "#8b5cf6",
                   <button
                     style={{
                       background:
-  "linear-gradient(135deg,#ec4899,#8b5cf6)",,
+  "linear-gradient(135deg,#ec4899,#8b5cf6)",
                       color: "white",
                       border: "none",
                       padding:
@@ -331,7 +331,7 @@ color: "#8b5cf6",
                       <button
                         style={{
                           background:
-  "linear-gradient(135deg,#8b5cf6,#6366f1)",,
+  "linear-gradient(135deg,#8b5cf6,#6366f1)",
                           color: "white",
                           border: "none",
                           padding:
@@ -377,7 +377,7 @@ color: "#8b5cf6",
                       }
                       style={{
                         background:
-  "linear-gradient(135deg,#ef4444,#ec4899)",,
+  "linear-gradient(135deg,#ef4444,#ec4899)",
                         color: "white",
                         border: "none",
                         padding:
