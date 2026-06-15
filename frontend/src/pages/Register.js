@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,40 +6,64 @@ import { Link, useNavigate } from "react-router-dom";
 function Register() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] =
+    useState("");
+
+  const [email, setEmail] =
+    useState("");
+
   const [password, setPassword] =
     useState("");
 
+  const [successMessage,
+    setSuccessMessage] =
+    useState("");
+
+  const [errorMessage,
+    setErrorMessage] =
+    useState("");
+
   const handleRegister = async () => {
+    setSuccessMessage("");
+    setErrorMessage("");
+
     try {
       const res = await axios.post(
         "https://smartcare-ai.onrender.com/api/auth/register",
-       {
-  name: name.trim(),
-  email: email.trim(),
-  password: password.trim(),
-}
+        {
+          name: name.trim(),
+          email: email.trim(),
+          password: password.trim(),
+        }
       );
 
-      alert(res.data.message);
+      setSuccessMessage(
+        "✅ Registration Successful"
+      );
+
       setName("");
-setEmail("");
-setPassword("");
+      setEmail("");
+      setPassword("");
 
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+
     } catch (error) {
-  console.log("FULL ERROR:", error);
+      console.log(error);
 
-  if (error.response) {
-    console.log("Response Data:", error.response.data);
-    alert(JSON.stringify(error.response.data));
-  } else if (error.request) {
-    alert("No response from server. Is backend running?");
-  } else {
-    alert(error.message);
-  }
-}
+      if (
+        error.response?.data?.message
+      ) {
+        setErrorMessage(
+          error.response.data.message
+        );
+      } else {
+        setErrorMessage(
+          "❌ Registration Failed"
+        );
+      }
+    }
   };
 
   return (
@@ -49,97 +74,179 @@ setPassword("");
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        background: "#f5f7fb",
+        background:
+          "linear-gradient(135deg,#fdf2f8,#faf5ff,#eef2ff)",
+        padding: "20px",
+        boxSizing: "border-box",
       }}
     >
       <div
         style={{
           textAlign: "center",
           marginBottom: "30px",
+          width: "100%",
+          maxWidth: "500px",
         }}
       >
+        <div
+          style={{
+            display: "inline-block",
+            padding: "8px 18px",
+            borderRadius: "999px",
+            background:
+              "rgba(236,72,153,0.1)",
+            color: "#db2777",
+            fontWeight: "600",
+            marginBottom: "20px",
+          }}
+        >
+          ✨ AI Powered Healthcare Platform
+        </div>
+
         <h1
           style={{
-            fontSize: "48px",
-            color: "#2563eb",
+            fontSize:
+              "clamp(42px,8vw,58px)",
+            fontWeight: "800",
+            background:
+              "linear-gradient(135deg,#ec4899,#8b5cf6)",
+            WebkitBackgroundClip:
+              "text",
+            WebkitTextFillColor:
+              "transparent",
             margin: 0,
           }}
         >
-          🏥 Smart Hospital
+          🏥 SmartCare AI
         </h1>
 
         <p
           style={{
-            color: "#555",
-            fontSize: "18px",
-            marginTop: "10px",
+            color: "#64748b",
+            fontSize:
+              "clamp(14px,4vw,18px)",
+            marginTop: "12px",
           }}
         >
-          Create your account
+          Create your account and
+          experience modern healthcare.
         </p>
       </div>
 
       <div
         style={{
-          background: "#fff",
-          padding: "40px",
-          borderRadius: "12px",
+          background:
+            "rgba(255,255,255,0.85)",
+          backdropFilter: "blur(20px)",
+          padding: "35px",
+          borderRadius: "28px",
+          border:
+            "1px solid rgba(255,255,255,0.5)",
           boxShadow:
-            "0 4px 12px rgba(0,0,0,0.1)",
-          width: "350px",
+            "0 25px 60px rgba(139,92,246,0.15)",
+          width: "100%",
+          maxWidth: "420px",
+          boxSizing: "border-box",
         }}
       >
         <h2
           style={{
             textAlign: "center",
             marginBottom: "20px",
+            color: "#1e293b",
           }}
         >
-          📝 Register
+          📝 Create Account
         </h2>
 
+        {successMessage && (
+          <div
+            style={{
+              background: "#dcfce7",
+              color: "#166534",
+              padding: "12px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div
+            style={{
+              background: "#fee2e2",
+              color: "#991b1b",
+              padding: "12px",
+              borderRadius: "12px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {errorMessage}
+          </div>
+        )}
+
         <input
-           type="text"
-  placeholder="Full Name"
-  value={name}
-  onChange={(e) =>
-    setName(e.target.value)
-  }
-  required
+          type="text"
+          placeholder="👤 Full Name"
+          value={name}
+          onChange={(e) =>
+            setName(e.target.value)
+          }
           style={{
             width: "100%",
-            padding: "10px",
+            padding: "14px 16px",
             marginBottom: "15px",
+            borderRadius: "14px",
+            border:
+              "1px solid #e5e7eb",
+            fontSize: "15px",
+            boxSizing: "border-box",
           }}
         />
 
         <input
-           type="email"
-  placeholder="Email"
-  value={email}
-  onChange={(e) =>
-    setEmail(e.target.value)
-  }
-  required
+          type="email"
+          placeholder="📧 Email Address"
+          value={email}
+          onChange={(e) =>
+            setEmail(e.target.value)
+          }
           style={{
             width: "100%",
-            padding: "10px",
+            padding: "14px 16px",
             marginBottom: "15px",
+            borderRadius: "14px",
+            border:
+              "1px solid #e5e7eb",
+            fontSize: "15px",
+            boxSizing: "border-box",
           }}
         />
 
         <input
-           type="password"
-  placeholder="Password"
-  value={password}
-  onChange={(e) =>
-    setPassword(e.target.value)
-  }
-  required
+          type="password"
+          placeholder="🔒 Password"
+          value={password}
+          onChange={(e) =>
+            setPassword(
+              e.target.value
+            )
+          }
           style={{
             width: "100%",
-            padding: "10px",
-            marginBottom: "15px",
+            padding: "14px 16px",
+            marginBottom: "18px",
+            borderRadius: "14px",
+            border:
+              "1px solid #e5e7eb",
+            fontSize: "15px",
+            boxSizing: "border-box",
           }}
         />
 
@@ -147,31 +254,96 @@ setPassword("");
           onClick={handleRegister}
           style={{
             width: "100%",
-            background: "#16a34a",
+            background:
+              "linear-gradient(135deg,#ec4899,#8b5cf6)",
             color: "white",
             border: "none",
-            padding: "12px",
-            borderRadius: "8px",
+            padding: "14px",
+            borderRadius: "14px",
             cursor: "pointer",
+            fontWeight: "700",
+            fontSize: "16px",
+            boxShadow:
+              "0 10px 25px rgba(139,92,246,0.25)",
           }}
         >
-          Register
+          🚀 Create Account
         </button>
 
         <p
           style={{
             textAlign: "center",
-            marginTop: "15px",
+            marginTop: "18px",
+            color: "#64748b",
           }}
         >
           Already have an account?{" "}
-          <Link to="/">
+          <Link
+            to="/"
+            style={{
+              color: "#8b5cf6",
+              fontWeight: "bold",
+            }}
+          >
             Login
           </Link>
         </p>
+
+        <div
+          style={{
+            marginTop: "25px",
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(3,1fr)",
+            gap: "10px",
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              padding: "12px",
+              background: "#faf5ff",
+              borderRadius: "12px",
+              fontSize: "12px",
+            }}
+          >
+            🤖
+            <br />
+            AI Assistant
+          </div>
+
+          <div
+            style={{
+              textAlign: "center",
+              padding: "12px",
+              background: "#fdf2f8",
+              borderRadius: "12px",
+              fontSize: "12px",
+            }}
+          >
+            📅
+            <br />
+            Booking
+          </div>
+
+          <div
+            style={{
+              textAlign: "center",
+              padding: "12px",
+              background: "#eef2ff",
+              borderRadius: "12px",
+              fontSize: "12px",
+            }}
+          >
+            🔒
+            <br />
+            Secure
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 export default Register;
+
