@@ -42,6 +42,7 @@ function Users() {
           alignItems: "center",
           fontSize: "24px",
           fontWeight: "bold",
+          background: "#ffffff",
         }}
       >
         Loading Users...
@@ -53,7 +54,7 @@ function Users() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#f8fafc",
+        background: "#ffffff",
         padding: "40px",
         boxSizing: "border-box",
       }}
@@ -66,9 +67,10 @@ function Users() {
       >
         <h1
           style={{
-            fontSize: "42px",
+            fontSize: "36px",
             marginBottom: "30px",
-            color: "#0f172a",
+            color: "#2563eb",
+            textAlign: "center",
           }}
         >
           👥 Registered Users
@@ -76,11 +78,12 @@ function Users() {
 
         <div
           style={{
-            background: "#fff",
-            borderRadius: "20px",
+            background: "#ffffff",
+            borderRadius: "12px",
             overflow: "hidden",
+            border: "1px solid #e5e7eb",
             boxShadow:
-              "0 10px 30px rgba(0,0,0,0.08)",
+              "0 4px 12px rgba(0,0,0,0.08)",
           }}
         >
           <table
@@ -93,8 +96,7 @@ function Users() {
             <thead>
               <tr
                 style={{
-                  background:
-                    "linear-gradient(135deg,#ec4899,#8b5cf6)",
+                  background: "#2563eb",
                   color: "white",
                 }}
               >
@@ -125,8 +127,7 @@ function Users() {
                     colSpan="2"
                     style={{
                       padding: "25px",
-                      textAlign:
-                        "center",
+                      textAlign: "center",
                     }}
                   >
                     No Users Found
