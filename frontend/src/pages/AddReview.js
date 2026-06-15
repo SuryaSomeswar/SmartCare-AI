@@ -22,43 +22,47 @@ function AddReview() {
   const [errorMessage, setErrorMessage] =
     useState("");
 
-  const submitReview = async (e) => {
-    e.preventDefault();
+const submitReview = async (e) => {
+  e.preventDefault();
 
-    setSuccessMessage("");
-    setErrorMessage("");
+  setSuccessMessage("");
+  setErrorMessage("");
 
-    try {
-     await axios.post(
-  `https://smartcare-ai.onrender.com/api/doctors/${id}/review`,
-  {
-    patientName,
-    rating,
-    comment,
+  try {
+    await axios.post(
+      `https://smartcare-ai.onrender.com/api/doctors/${id}/review`,
+      {
+        patientName,
+        rating,
+        comment,
+      }
+    );
+
+    setSuccessMessage(
+      "✅ Review Submitted Successfully"
+    );
+
+    setPatientName("");
+    setRating(5);
+    setComment("");
+
+    setTimeout(() => {
+      navigate("/doctors");
+    }, 1500);
+
+  } catch (error) {
+    console.log(error);
+
+    setErrorMessage(
+      error.response?.data?.message ||
+      "❌ Failed to Submit Review"
+    );
+
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 3000);
   }
-);
-      setSuccessMessage(
-        "✅ Review Submitted Successfully"
-      );
-
-      setTimeout(() => {
-        navigate("/doctors");
-      }, 1500);
-
-    } catch (error) {
-      console.log(error);
-
-        setErrorMessage(
-    error.response?.data?.message ||
-    "❌ Failed to Submit Review"
-  );
-
-
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 3000);
-    }
-  };
+};
 
   const inputStyle = {
     width: "100%",
