@@ -49,9 +49,11 @@ function AddReview() {
     } catch (error) {
       console.log(error);
 
-      setErrorMessage(
-        "❌ Failed to Submit Review"
-      );
+        setErrorMessage(
+    error.response?.data?.message ||
+    "❌ Failed to Submit Review"
+  );
+
 
       setTimeout(() => {
         setErrorMessage("");
