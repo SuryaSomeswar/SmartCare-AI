@@ -14,5 +14,29 @@ router.get("/", async (req, res) => {
     });
   }
 });
+router.put(
+  "/reset-password/:id",
+  async (req, res) => {
+    try {
+      const { password } = req.body;
+
+      await User.findByIdAndUpdate(
+        req.params.id,
+        { password }
+      );
+
+      res.json({
+        message:
+          "Password Reset Successfully",
+      });
+
+    } catch (error) {
+      res.status(500).json({
+        message:
+          "Failed To Reset Password",
+      });
+    }
+  }
+);
 
 module.exports = router;
