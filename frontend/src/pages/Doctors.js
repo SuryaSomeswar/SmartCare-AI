@@ -71,7 +71,8 @@ function Doctors() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#f5f7fb",
+        background:
+  "linear-gradient(135deg,#fdf2f8,#faf5ff)",,
         padding: "40px",
       }}
     >
@@ -83,7 +84,7 @@ function Doctors() {
       >
         <h1
           style={{
-            color: "#2563eb",
+            color: "#8b5cf6",,
             fontSize: "42px",
           }}
         >
@@ -111,12 +112,13 @@ function Doctors() {
   maxWidth: "700px",
   padding: "15px 20px",
   borderRadius: "14px",
-  border: "1px solid #dbeafe",
+  border: "1px solid #f3e8ff",,
   marginTop: "20px",
   fontSize: "16px",
   outline: "none",
   boxShadow:
-    "0 4px 15px rgba(0,0,0,0.05)",
+    boxShadow:
+  "0 10px 30px rgba(139,92,246,0.15)",
 }}
         />
       </div>
@@ -147,13 +149,16 @@ function Doctors() {
           .map((doctor) => (
             <div
               key={doctor._id}
-              style={{
-  background: "white",
+         style={{
+  background:
+    "rgba(255,255,255,0.9)",
+  backdropFilter: "blur(12px)",
   borderRadius: "24px",
   padding: "30px",
-  border: "1px solid #e5e7eb",
+  border:
+    "1px solid rgba(255,255,255,0.4)",
   boxShadow:
-    "0 10px 30px rgba(0,0,0,0.08)",
+    "0 10px 30px rgba(139,92,246,0.15)",
 }}
             >
               <div
@@ -169,7 +174,7 @@ function Doctors() {
   <h2
     style={{
       margin: 0,
-      color: "#0f172a",
+      color: "#8b5cf6",
     }}
   >
     👨‍⚕️ {doctor.name}
@@ -223,8 +228,8 @@ function Doctors() {
 
               <div
   style={{
-    background: "#eff6ff",
-    color: "#2563eb",
+    background: "#f3e8ff",
+color: "#8b5cf6",
     padding: "8px 12px",
     borderRadius: "8px",
     display: "inline-block",
@@ -263,7 +268,8 @@ function Doctors() {
         >
           <button
             style={{
-  background: "#2563eb",
+  background:
+  "linear-gradient(135deg,#ec4899,#8b5cf6)",,
   color: "white",
   border: "none",
   padding: "10px 18px",
@@ -302,7 +308,7 @@ function Doctors() {
                   <button
                     style={{
                       background:
-                        "#8b5cf6",
+  "linear-gradient(135deg,#ec4899,#8b5cf6)",,
                       color: "white",
                       border: "none",
                       padding:
@@ -325,7 +331,7 @@ function Doctors() {
                       <button
                         style={{
                           background:
-                            "#f59e0b",
+  "linear-gradient(135deg,#8b5cf6,#6366f1)",,
                           color: "white",
                           border: "none",
                           padding:
@@ -371,7 +377,7 @@ function Doctors() {
                       }
                       style={{
                         background:
-                          "#dc2626",
+  "linear-gradient(135deg,#ef4444,#ec4899)",,
                         color: "white",
                         border: "none",
                         padding:
