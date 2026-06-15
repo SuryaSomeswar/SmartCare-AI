@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -5,8 +6,19 @@ function Feedback() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
+  const [successMessage,
+    setSuccessMessage] =
+    useState("");
+
+  const [errorMessage,
+    setErrorMessage] =
+    useState("");
+
   const submitFeedback = async (e) => {
     e.preventDefault();
+
+    setSuccessMessage("");
+    setErrorMessage("");
 
     try {
       await axios.post(
@@ -17,13 +29,27 @@ function Feedback() {
         }
       );
 
-      alert("Thank you for your feedback!");
+      setSuccessMessage(
+        "✅ Thank you for your feedback!"
+      );
+
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
 
       setName("");
       setMessage("");
+
     } catch (error) {
       console.log(error);
-      alert("Failed to submit feedback");
+
+      setErrorMessage(
+        "❌ Failed to submit feedback"
+      );
+
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
@@ -31,7 +57,8 @@ function Feedback() {
     <div
       style={{
         minHeight: "100vh",
-        background: "#f8fafc",
+        background:
+          "linear-gradient(135deg,#fdf2f8,#faf5ff)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -46,14 +73,14 @@ function Feedback() {
           background: "#ffffff",
           padding: "40px",
           borderRadius: "24px",
-          boxShadow: "0 15px 40px rgba(0,0,0,0.08)",
-          border: "1px solid #e2e8f0",
+          boxShadow:
+            "0 10px 30px rgba(0,0,0,0.08)",
         }}
       >
         <h1
           style={{
-            marginBottom: "25px",
-            color: "#0f172a",
+            marginBottom: "20px",
+            color: "#8b5cf6",
             fontSize: "36px",
             textAlign: "center",
           }}
@@ -68,8 +95,41 @@ function Feedback() {
             marginBottom: "30px",
           }}
         >
-          We value your feedback. Help us improve SmartCare AI.
+          We value your feedback.
+          Help us improve SmartCare AI.
         </p>
+
+        {successMessage && (
+          <div
+            style={{
+              background: "#dcfce7",
+              color: "#166534",
+              padding: "12px",
+              borderRadius: "10px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div
+            style={{
+              background: "#fee2e2",
+              color: "#991b1b",
+              padding: "12px",
+              borderRadius: "10px",
+              marginBottom: "15px",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {errorMessage}
+          </div>
+        )}
 
         <form onSubmit={submitFeedback}>
           <input
@@ -82,11 +142,11 @@ function Feedback() {
             required
             style={{
               width: "100%",
-              padding: "15px",
-              marginBottom: "20px",
-              borderRadius: "12px",
-              border: "1px solid #cbd5e1",
-              fontSize: "16px",
+              padding: "12px",
+              marginBottom: "15px",
+              borderRadius: "8px",
+              border:
+                "1px solid #d1d5db",
               boxSizing: "border-box",
             }}
           />
@@ -101,10 +161,10 @@ function Feedback() {
             required
             style={{
               width: "100%",
-              padding: "15px",
-              borderRadius: "12px",
-              border: "1px solid #cbd5e1",
-              fontSize: "16px",
+              padding: "12px",
+              borderRadius: "8px",
+              border:
+                "1px solid #d1d5db",
               resize: "none",
               boxSizing: "border-box",
             }}
@@ -116,13 +176,13 @@ function Feedback() {
               width: "100%",
               marginTop: "20px",
               background:
-                "linear-gradient(135deg,#2563eb,#3b82f6)",
+                "linear-gradient(135deg,#ec4899,#8b5cf6)",
               color: "white",
               border: "none",
-              padding: "15px",
-              borderRadius: "12px",
+              padding: "12px",
+              borderRadius: "10px",
               cursor: "pointer",
-              fontSize: "16px",
+              fontSize: "15px",
               fontWeight: "bold",
             }}
           >
@@ -135,3 +195,4 @@ function Feedback() {
 }
 
 export default Feedback;
+
