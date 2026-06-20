@@ -11,9 +11,9 @@ function RecentAppointments() {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/appointments"
-      );
+   const res = await axios.get(
+  "https://smartcare-ai.onrender.com/api/appointments"
+);
 
       setAppointments(
         res.data.slice(-5).reverse()
@@ -25,7 +25,7 @@ function RecentAppointments() {
 
   const markCompleted = async (id) => {
     await axios.put(
-      `http://localhost:5000/api/appointments/${id}`,
+      `https://smartcare-ai.onrender.com/api/appointments/${id}`,
       {
         status: "Completed",
       }
@@ -36,7 +36,7 @@ function RecentAppointments() {
 
   const markNoShow = async (id) => {
     await axios.put(
-      `http://localhost:5000/api/appointments/${id}`,
+      `https://smartcare-ai.onrender.com/api/appointments/${id}`,
       {
         status: "No Show",
       }
