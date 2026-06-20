@@ -5,7 +5,8 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] =
     useState(true);
-  
+const [search, setSearch] =
+  useState("");
 const [successMessage,
 setSuccessMessage] =
 useState("");
@@ -114,6 +115,24 @@ const resetPassword = async (id) => {
         >
           👥 Registered Users
         </h1>
+<input
+  type="text"
+  placeholder="🔍 Search by Name or Email..."
+  value={search}
+  onChange={(e) =>
+    setSearch(e.target.value)
+  }
+  style={{
+    width: "100%",
+    maxWidth: "500px",
+    padding: "12px 16px",
+    borderRadius: "12px",
+    border: "1px solid #d1d5db",
+    marginBottom: "20px",
+    fontSize: "15px",
+    outline: "none",
+  }}
+/>
             {successMessage && (
   <div
     style={{
@@ -196,75 +215,115 @@ const resetPassword = async (id) => {
               </tr>
             </thead>
 
-            <tbody>
-              {users.length === 0 ? (
-                <tr>
-                  <td
-                    colSpan="2"
-                    style={{
-                      padding: "25px",
-                      textAlign: "center",
-                    }}
-                  >
-                    No Users Found
-                  </td>
-                </tr>
-              ) : (
-                users.map(
-                  (user, index) => (
-                    <tr
-                      key={user._id}
-                      style={{
-                        background:
-                          index % 2 === 0
-                            ? "#ffffff"
-                            : "#f8fafc",
-                      }}
-                    >
-                      <td
-                        style={{
-                          padding:
-                            "16px 18px",
-                          borderBottom:
-                            "1px solid #e2e8f0",
-                        }}
-                      >
-                        {user.name}
-                      </td>
+      <tbody>
+  {users
+    .filter(
+      (user) =>
+        user.name
+          .toLowerCase()
+          .includes(
+            search.toLowerCase()
+          ) ||
+        user.email
+          .toLowerCase()
+          .includes(
+            search.toLowerCase()
+          )
+    ).length === 0 ? (
+    <tr>
+      <td
+        colSpan="3"
+        style={{
+          padding: "25px",
+          textAlign: "center",
+        }}
+      >
+        No Users Found
+      </td>
+    </tr>
+  ) : (
+    users
+      .filter(
+        (user) =>
+          user.name
+            .toLowerCase()
+            .includes(
+              search.toLowerCase()
+            ) ||
+          user.email
+            .toLowerCase()
+            .includes(
+              search.toLowerCase()
+            )
+      )
+      .map(
+        (user, index) => (
+          <tr
+            key={user._id}
+            style={{
+              background:
+                index % 2 === 0
+                  ? "#ffffff"
+                  : "#f8fafc",
+            }}
+          >
+            <td
+              style={{
+                padding:
+                  "16px 18px",
+                borderBottom:
+                  "1px solid #e2e8f0",
+              }}
+            >
+              {user.name}
+            </td>
 
-                      <td
-                        style={{
-                          padding:
-                            "16px 18px",
-                          borderBottom:
-                            "1px solid #e2e8f0",
-                        }}
-                      >
-                        {user.email}
-                      </td>
-                        <td>
-  <button
-    onClick={() =>
-      resetPassword(user._id)
-    }
-    style={{
-      background:
-      "linear-gradient(135deg,#ec4899,#8b5cf6)",
-      color:"white",
-      border:"none",
-      padding:"8px 15px",
-      borderRadius:"8px",
-      cursor:"pointer",
-    }}
-  >
-    🔑 Reset Password
-  </button>
-</td>
-                    </tr>
+            <td
+              style={{
+                padding:
+                  "16px 18px",
+                borderBottom:
+                  "1px solid #e2e8f0",
+              }}
+            >
+              {user.email}
+            </td>
+
+            <td
+              style={{
+                padding:
+                  "16px 18px",
+                borderBottom:
+                  "1px solid #e2e8f0",
+              }}
+            >
+              <button
+                onClick={() =>
+                  resetPassword(
+                    user._id
                   )
-                )
-              )}
-            </tbody>
+                }
+                style={{
+                  background:
+                    "linear-gradient(135deg,#ec4899,#8b5cf6)",
+                  color: "white",
+                  border: "none",
+                  padding:
+                    "8px 15px",
+                  borderRadius:
+                    "8px",
+                  cursor:
+                    "pointer",
+                }}
+              >
+                🔑 Reset Password
+              </button>
+            </td>
+          </tr>
+        )
+      )
+  )}
+</tbody>
           </table>
         </div>
       </div>
