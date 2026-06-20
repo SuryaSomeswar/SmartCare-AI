@@ -173,6 +173,23 @@ function Home() {
                 📝 Feedback
               </button>
             </a>
+                  <a href="/ai-health">
+  <button
+    style={{
+      background:
+        "linear-gradient(135deg,#ec4899,#8b5cf6)",
+      color: "white",
+      border: "none",
+      padding: "15px 30px",
+      borderRadius: "12px",
+      fontWeight: "bold",
+      cursor: "pointer",
+      fontSize: "16px",
+    }}
+  >
+    🤖 AI Assistant
+  </button>
+</a>
 
             <button
               onClick={() => {
