@@ -85,34 +85,74 @@ fontWeight: "bold",
 >
 🏥 SmartCare AI </h2>
 
-    <div
+  <div
+  style={{
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  }}
+>
+  <a href="/doctors">
+    <button
       style={{
-        display: "flex",
-        gap: "10px",
-        flexWrap: "wrap",
+        background:
+          "linear-gradient(135deg,#ec4899,#8b5cf6)",
+        color: "white",
+        border: "none",
+        padding: "10px 18px",
+        borderRadius: "10px",
+        cursor: "pointer",
+        fontWeight: "600",
       }}
     >
-      <a href="/doctors">
-        <button
-          style={{
-            background:
-              "linear-gradient(135deg,#ec4899,#8b5cf6)",
-            color: "white",
-            border: "none",
-            padding: "10px 18px",
-            borderRadius: "10px",
-            cursor: "pointer",
-            fontWeight: "600",
-          }}
-        >
-          Book Appointment
-        </button>
-      </a>
-     <a href="/feedback">
+      📅 Book Appointment
+    </button>
+  </a>
+
+  <a href="/feedback">
+    <button
+      style={{
+        background:
+          "linear-gradient(135deg,#8b5cf6,#6366f1)",
+        color: "white",
+        border: "none",
+        padding: "10px 18px",
+        borderRadius: "10px",
+        cursor: "pointer",
+        fontWeight: "600",
+      }}
+    >
+      💬 Feedback
+    </button>
+  </a>
+
+  <a href="/ai-health">
+    <button
+      style={{
+        background:
+          "linear-gradient(135deg,#ec4899,#8b5cf6)",
+        color: "white",
+        border: "none",
+        padding: "10px 18px",
+        borderRadius: "10px",
+        cursor: "pointer",
+        fontWeight: "600",
+      }}
+    >
+      🤖 AI Assistant
+    </button>
+  </a>
+
   <button
+    onClick={() => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("staff");
+      window.location.href = "/";
+    }}
     style={{
       background:
-        "linear-gradient(135deg,#8b5cf6,#6366f1)",
+        "linear-gradient(135deg,#ef4444,#ec4899)",
       color: "white",
       border: "none",
       padding: "10px 18px",
@@ -121,52 +161,9 @@ fontWeight: "bold",
       fontWeight: "600",
     }}
   >
-    Feedback
+    🚪 Logout
   </button>
-</a>
-
-<a href="/ai-health">
-  <button
-    style={{
-      background:
-        "linear-gradient(135deg,#ec4899,#8b5cf6)",
-      color: "white",
-      border: "none",
-      padding: "10px 18px",
-      borderRadius: "10px",
-      cursor: "pointer",
-      fontWeight: "600",
-    }}
-  >
-    🤖 AI Assistant
-  </button>
-</a>
-
-<button
-  onClick={() => {
-    localStorage.removeItem("token");
-     
-
-      <button
-        onClick={() => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("staff");
-          window.location.href = "/";
-        }}
-        style={{
-          background:
-            "linear-gradient(135deg,#ef4444,#ec4899)",
-          color: "white",
-          border: "none",
-          padding: "10px 18px",
-          borderRadius: "10px",
-          cursor: "pointer",
-          fontWeight: "600",
-        }}
-      >
-        Logout
-      </button>
-    </div>
+</div> 
   </nav>
 
   <div
