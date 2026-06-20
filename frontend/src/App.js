@@ -108,23 +108,44 @@ fontWeight: "bold",
           Book Appointment
         </button>
       </a>
+     <a href="/feedback">
+  <button
+    style={{
+      background:
+        "linear-gradient(135deg,#8b5cf6,#6366f1)",
+      color: "white",
+      border: "none",
+      padding: "10px 18px",
+      borderRadius: "10px",
+      cursor: "pointer",
+      fontWeight: "600",
+    }}
+  >
+    Feedback
+  </button>
+</a>
 
-      <a href="/feedback">
-        <button
-          style={{
-            background:
-              "linear-gradient(135deg,#8b5cf6,#6366f1)",
-            color: "white",
-            border: "none",
-            padding: "10px 18px",
-            borderRadius: "10px",
-            cursor: "pointer",
-            fontWeight: "600",
-          }}
-        >
-          Feedback
-        </button>
-      </a>
+<a href="/ai-health">
+  <button
+    style={{
+      background:
+        "linear-gradient(135deg,#ec4899,#8b5cf6)",
+      color: "white",
+      border: "none",
+      padding: "10px 18px",
+      borderRadius: "10px",
+      cursor: "pointer",
+      fontWeight: "600",
+    }}
+  >
+    🤖 AI Assistant
+  </button>
+</a>
+
+<button
+  onClick={() => {
+    localStorage.removeItem("token");
+     
 
       <button
         onClick={() => {
