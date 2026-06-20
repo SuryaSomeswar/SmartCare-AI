@@ -11,9 +11,15 @@ function Footer() {
     >
       <h3>🏥 SmartCare AI</h3>
 
-      <p>
-        🏥 SmartCare AI is a modern healthcare management platform designed to simplify appointment booking, reduce patient waiting time, and enhance hospital efficiency through smart digital solutions. Our mission is to make healthcare faster, smarter, and more accessible for everyone.
-      </p>
+     <p>
+  SmartCare AI is a modern healthcare management platform designed to simplify appointment booking, reduce patient waiting time, and enhance hospital efficiency through smart digital solutions. Our mission is to make healthcare faster, smarter, and more accessible for everyone.
+
+  <br />
+  <br />
+
+  📧 For any queries or support, contact:
+  <strong> admin@gmail.com</strong>
+</p>
 
       <p>
         © 2026 Smart Hospital Management
