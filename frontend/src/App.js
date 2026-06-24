@@ -346,36 +346,46 @@ fontWeight: "bold",
   >
     📋 My Appointments
   </h2>
-{successMessage && (
+   {successMessage && (
   <div
     style={{
-      background:"#dcfce7",
-      color:"#166534",
-      padding:"12px",
-      borderRadius:"10px",
-      marginBottom:"15px",
-      fontWeight:"bold",
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      background: "#dcfce7",
+      color: "#166534",
+      padding: "15px 20px",
+      borderRadius: "12px",
+      fontWeight: "bold",
+      boxShadow:
+        "0 10px 25px rgba(0,0,0,0.15)",
+      zIndex: 9999,
     }}
   >
     {successMessage}
   </div>
 )}
 
-{errorMessage && (
+        {errorMessage && (
   <div
     style={{
-      background:"#fee2e2",
-      color:"#991b1b",
-      padding:"12px",
-      borderRadius:"10px",
-      marginBottom:"15px",
-      fontWeight:"bold",
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      background: "#fee2e2",
+      color: "#991b1b",
+      padding: "15px 20px",
+      borderRadius: "12px",
+      fontWeight: "bold",
+      boxShadow:
+        "0 10px 25px rgba(0,0,0,0.15)",
+      zIndex: 9999,
     }}
   >
     {errorMessage}
   </div>
 )}
-
+   
   {myAppointments.length === 0 ? (
     <p>No Appointments Found</p>
   ) : (
