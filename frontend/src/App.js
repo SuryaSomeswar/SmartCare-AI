@@ -24,9 +24,12 @@ doctors: 0,
 users: 0,
 appointments: 0,
 });
+const [myAppointments, setMyAppointments] =
+  useState([]);
 
 useEffect(() => {
-fetchStats();
+  fetchStats();
+  fetchMyAppointments();
 }, []);
 
 const fetchStats = async () => {
@@ -53,6 +56,25 @@ const doctors = await axios.get(
 }
 
 
+};
+  const fetchMyAppointments = async () => {
+  try {
+    const res = await axios.get(
+      "https://smartcare-ai.onrender.com/api/appointments"
+    );
+
+    const userEmail =
+      localStorage.getItem("email");
+
+    setMyAppointments(
+      res.data.filter(
+        (appointment) =>
+          appointment.email === userEmail
+      )
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 return (
@@ -279,6 +301,63 @@ fontWeight: "bold",
     >
       Why Choose SmartCare AI?
     </h2>
+        <div
+  style={{
+    maxWidth: "1200px",
+    margin: "40px auto",
+    background: "rgba(255,255,255,0.9)",
+    backdropFilter: "blur(12px)",
+    padding: "30px",
+    borderRadius: "20px",
+    boxShadow:
+      "0 10px 30px rgba(139,92,246,0.15)",
+  }}
+>
+  <h2
+    style={{
+      color: "#8b5cf6",
+      marginBottom: "20px",
+    }}
+  >
+    📋 My Appointments
+  </h2>
+
+  {myAppointments.length === 0 ? (
+    <p>No Appointments Found</p>
+  ) : (
+    myAppointments.map(
+      (appointment) => (
+        <div
+          key={appointment._id}
+          style={{
+            padding: "15px",
+            borderBottom:
+              "1px solid #e5e7eb",
+          }}
+        >
+          <h3>
+            👨‍⚕️ {appointment.doctorName}
+          </h3>
+
+          <p>
+            📅 {appointment.date}
+          </p>
+
+          <p>
+            🕒 {appointment.time}
+          </p>
+
+          <p>
+            Status:{" "}
+            <strong>
+              {appointment.status}
+            </strong>
+          </p>
+        </div>
+      )
+    )
+  )}
+</div>
 
     <div
       style={{
