@@ -217,7 +217,7 @@ function Appointments() {
     style={{
       position: "fixed",
       top: "20px",
-      left: "20px",
+      right: "20px",
       background: "#dcfce7",
       color: "#166534",
       padding: "15px 20px",
@@ -237,7 +237,7 @@ function Appointments() {
     style={{
       position: "fixed",
       top: "20px",
-      left: "20px",
+      right: "20px",
       background: "#fee2e2",
       color: "#991b1b",
       padding: "15px 20px",
