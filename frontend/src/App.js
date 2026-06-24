@@ -84,11 +84,6 @@ const doctors = await axios.get(
   }
 };
   const cancelAppointment = async (id) => {
-    const confirmCancel = window.confirm(
-  "Are you sure you want to cancel this appointment?"
-);
-
-if (!confirmCancel) return;
   try {
     await axios.delete(
       `https://smartcare-ai.onrender.com/api/appointments/${id}`
