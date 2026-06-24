@@ -26,6 +26,13 @@ appointments: 0,
 });
 const [myAppointments, setMyAppointments] =
   useState([]);
+  const [successMessage,
+setSuccessMessage] =
+useState("");
+
+const [errorMessage,
+setErrorMessage] =
+useState("");
 
 useEffect(() => {
   fetchStats();
@@ -74,6 +81,39 @@ const doctors = await axios.get(
     );
   } catch (error) {
     console.log(error);
+  }
+};
+  const cancelAppointment = async (id) => {
+    const confirmCancel = window.confirm(
+  "Are you sure you want to cancel this appointment?"
+);
+
+if (!confirmCancel) return;
+  try {
+    await axios.delete(
+      `https://smartcare-ai.onrender.com/api/appointments/${id}`
+    );
+
+    setSuccessMessage(
+      "✅ Appointment Cancelled Successfully"
+    );
+
+    fetchMyAppointments();
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 3000);
+
+  } catch (error) {
+    console.log(error);
+
+    setErrorMessage(
+      "❌ Failed To Cancel Appointment"
+    );
+
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 3000);
   }
 };
 
@@ -291,17 +331,7 @@ fontWeight: "bold",
       padding: "60px 40px",
     }}
   >
-    <h2
-      style={{
-        textAlign: "center",
-        marginBottom: "40px",
-        color: "#8b5cf6",
-        fontSize: "36px",
-      }}
-    >
-      Why Choose SmartCare AI?
-    </h2>
-        <div
+      <div
   style={{
     maxWidth: "1200px",
     margin: "40px auto",
@@ -321,6 +351,35 @@ fontWeight: "bold",
   >
     📋 My Appointments
   </h2>
+{successMessage && (
+  <div
+    style={{
+      background:"#dcfce7",
+      color:"#166534",
+      padding:"12px",
+      borderRadius:"10px",
+      marginBottom:"15px",
+      fontWeight:"bold",
+    }}
+  >
+    {successMessage}
+  </div>
+)}
+
+{errorMessage && (
+  <div
+    style={{
+      background:"#fee2e2",
+      color:"#991b1b",
+      padding:"12px",
+      borderRadius:"10px",
+      marginBottom:"15px",
+      fontWeight:"bold",
+    }}
+  >
+    {errorMessage}
+  </div>
+)}
 
   {myAppointments.length === 0 ? (
     <p>No Appointments Found</p>
@@ -348,16 +407,50 @@ fontWeight: "bold",
           </p>
 
           <p>
-            Status:{" "}
-            <strong>
-              {appointment.status}
-            </strong>
-          </p>
+  Status:{" "}
+  <strong>
+    {appointment.status}
+  </strong>
+</p>
+
+{appointment.status !==
+  "Cancelled" && (
+  <button
+    onClick={() =>
+      cancelAppointment(
+        appointment._id
+      )
+    }
+    style={{
+      background:
+        "linear-gradient(135deg,#ef4444,#ec4899)",
+      color: "white",
+      border: "none",
+      padding: "10px 15px",
+      borderRadius: "8px",
+      cursor: "pointer",
+      marginTop: "10px",
+    }}
+  >
+    🚫 Cancel Appointment
+  </button>
+)}
         </div>
       )
     )
   )}
 </div>
+    <h2
+      style={{
+        textAlign: "center",
+        marginBottom: "40px",
+        color: "#8b5cf6",
+        fontSize: "36px",
+      }}
+    >
+      Why Choose SmartCare AI?
+    </h2>
+      
 
     <div
       style={{
